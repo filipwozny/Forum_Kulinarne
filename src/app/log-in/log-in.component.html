@@ -2,11 +2,13 @@
 
 <h2>Dane logowania:</h2>
 <label>
-  Login: <input type="text" />
+  Nazwa użytkownika: <input id="login" type="text" 
+    [(ngModel)]="login" required/>
 </label>
 
 <label>
-  Hasło: <input type="text" />
+  Hasło: <input id="haslo" type="password" 
+  [(ngModel)]="haslo" required/>
 </label>
 
-<button type="submit">Zaloguj</button>
+<button type="submit" (click)='Login()'>Zaloguj</button>

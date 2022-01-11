@@ -1,7 +1,7 @@
 import {  HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Uzytkownicy } from './app.component';
+import { User } from './models/user';
 
 @Injectable()
 export class HttpService {
@@ -9,8 +9,8 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
 
-  getUsers(): Observable<Array<Uzytkownicy>>{
-    return this.http.get<Array<Uzytkownicy>>('http://localhost:64231/api/Uzytkownicy');
+  getUsers(): Observable<Array<User>>{
+    return this.http.get<Array<User>>('http://localhost:64231/api/Uzytkownicy');
   }
 
 }
