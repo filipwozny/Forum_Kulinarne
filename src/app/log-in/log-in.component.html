@@ -12,3 +12,8 @@
 </label>
 
 <button type="submit" (click)='Login()'>Zaloguj</button>
+
+<div *ngIf="userService.czy_zalogowany == true"> 
+      <a>Zalogowano!</a>
+      {{ goHomeSite() }}
+</div>

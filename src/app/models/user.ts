@@ -1,9 +1,11 @@
 export class User {
-    nazwa_uzytkownika: string;
-    haslo: string;
-    imie: string;
-    nazwisko: string;
-    czy_admin: number;
-    telefon?: number;
-    mail?: string;
+    constructor(
+    public nazwa_uzytkownika: string,
+    public haslo: string,
+    public imie: string,
+    public nazwisko: string,
+    public czy_admin: number,
+    public telefon?: number,
+    public mail?: string,
+    ) {};
 }

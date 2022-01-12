@@ -1,1 +1,4 @@
 <h1>Dzięki, działa!</h1>
+<div *ngIf="userService.czy_zalogowany == true">
+    <h2>Witaj! {{userService.user.imie + ' ' +userService.user.nazwisko}}</h2>
+</div>

@@ -36,7 +36,7 @@ import { User } from './models/user';
       { path: 'register', component: RegisterComponent }
     ])
   ],
-  providers: [HttpClientModule,HttpService,UserService],
+  providers: [HttpClientModule,HttpService,UserService, AppRoutingModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,10 +8,8 @@ import { User } from './models/user';
 })
 export class AppComponent {
   title = 'sbdprojekt';
-  user?: User;
 
   constructor(private userService: UserService) {
-      this.userService.user?.subscribe(x => this.user = x);
   }
 
   logout() {
