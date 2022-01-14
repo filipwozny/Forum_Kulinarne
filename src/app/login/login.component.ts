@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-log-in',
-  templateUrl: './log-in.component.html',
+  selector: 'app-login',
+  templateUrl: './login.component.html',
 })
 
 

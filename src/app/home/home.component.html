@@ -2,3 +2,14 @@
 <div *ngIf="userService.czy_zalogowany == true">
     <h2>Witaj! {{userService.user.imie + ' ' +userService.user.nazwisko}}</h2>
 </div>
+
+<div>
+    <ul>
+        <li *ngFor="let item of recipeService.simpleRecipes">
+            <div>
+                <img [src]="this.recipeService.photoURL+item.photoName | safe" width="300px" height="200px">
+                {{item.id_przepisu}} {{item.nazwa}} {{item.photoName}}
+            </div>
+        </li>
+    </ul>
+</div>

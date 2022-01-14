@@ -1,28 +1,73 @@
 <h1>Strona rejestracji</h1>
 
-<h2>Dane register:</h2>
-<label>
-  Nazwa użytkownika: <input type="text" />
-</label>
-<br />
-<label>
-  Imię: <input type="text" />
-</label>
-<br />
-<label>
-  Nazwisko: <input type="text" />
-</label>
-<br />
-<label>
-  Hasło: <input type="text" />
-</label>
-<br />
-<label>
-  Telefon: <input type="text" />
-</label>
-<br />
-<label>
-  E-mail: <input type="text" />
-</label>
+<h2>Dane rejestracji:</h2>
+<div>
+  <div>
+    <label>
+      Nazwa użytkownika: <input id="nazwa_uzytkownika" type="text" 
+      [(ngModel)]="nazwa_uzytkownika" required/>
+      <div *ngIf="registrationStatus == 404"> 
+        <a>Podana nazwa użytkownika jest zajęta!</a>
+      </div>
+    </label>
+  </div>
 
-<button type="submit">Zajerestruj</button>
+  <div>
+    <label>
+      Imię: <input id="imie" type="text" 
+      onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
+      [(ngModel)]="imie" required />
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Nazwisko: <input id="nazwisko" type="text" 
+      onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
+      [(ngModel)]="nazwisko" required/>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Hasło: <input id="haslo" type="password" 
+      [(ngModel)]="haslo" required/>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Powtórz Hasło: <input id="powtorzHaslo" type="password" 
+      [(ngModel)]="powtorzHaslo" required/>
+      <div *ngIf="checkPasswords() == false"> 
+        <a>Podane hasła są różne!</a>
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Telefon*: <input id="telefon" type="number" 
+      [(ngModel)]="telefon"/>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      E-mail*: <input id="mail" type="text" 
+      [(ngModel)]="mail"/>
+      <div *ngIf="checkMail() == false"> 
+        <a>Podane mail jest nieprawidłowy!</a>
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <button type="submit" (click)='Register()' [disabled]="nazwa_uzytkownika === '' || imie === '' || nazwisko === '' || haslo === '' || !checkPasswords()">Zarejerestruj</button>
+  </div>
+</div>
+
+<div *ngIf="registrationResult == true"> 
+  <a>Rejestracja zakończona pomyślnie!</a>
+  {{goLoginSite()}}
+</div>

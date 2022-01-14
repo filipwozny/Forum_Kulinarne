@@ -1,8 +1,8 @@
 import {  HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { of,Observable } from 'rxjs';
 import { User } from '../models/user';
-import { map } from 'rxjs/operators';
+
 
 
 @Injectable()
@@ -28,6 +28,15 @@ export class UserService {
 
     setUser(newUser: User) {
         this.user = newUser;
+    }
+
+    registerUser(val: any) {
+        return this.http.post(this.userURL, val);
+    }
+
+
+    existUser(username: string) {
+        return this.http.get<Array<User>>(`${this.userURL}?id=${username}`);
     }
 
 }

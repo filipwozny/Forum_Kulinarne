@@ -11,7 +11,7 @@
   [(ngModel)]="haslo" required/>
 </label>
 
-<button type="submit" (click)='Login()'>Zaloguj</button>
+<button type="submit" (click)='Login()' [disabled]="login === '' || haslo === ''">Zaloguj</button>
 
 <div *ngIf="userService.czy_zalogowany == true"> 
       <a>Zalogowano!</a>
