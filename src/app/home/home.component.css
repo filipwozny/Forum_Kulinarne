@@ -1,0 +1,10 @@
+.div-recipe {
+    border-radius: 0px 40px 0px 40px;
+    width: 30vw;
+    background-color: rgb(18, 83, 18);
+    background-color:   rgba(202, 202, 202, 0.507);
+}
+
+.img-recipe {
+    cursor: pointer;
+}

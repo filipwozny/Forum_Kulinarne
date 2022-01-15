@@ -4,11 +4,16 @@
 </div>
 
 <div>
+    <p>Tu będą kategorie!</p>
+</div>
+
+<div class="div-recipe">
     <ul>
-        <li *ngFor="let item of recipeService.simpleRecipes">
+        <li *ngFor="let item of recipeService.simpleRecipes; let i = index">
             <div>
-                <img [src]="this.recipeService.photoURL+item.photoName | safe" width="300px" height="200px">
-                {{item.id_przepisu}} {{item.nazwa}} {{item.photoName}}
+                <img class="img-recipe" [src]="this.recipeService.photoURL+item.photoName | safe" width="300px" height="200px" (click)="goRecipeSite(i)">
+                <!-- {{item.id_przepisu}} {{item.nazwa}} {{item.photoName}} -->
+                <p>{{item.nazwa}}</p>
             </div>
         </li>
     </ul>

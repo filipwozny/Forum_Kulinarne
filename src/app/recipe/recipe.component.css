@@ -1,0 +1,31 @@
+.div-recipe {
+    border: 5px solid #5c5c5c;
+    padding: 1vw;
+    border-radius: 0px 40px 0px 40px;
+    background-color:   rgba(202, 202, 202, 0.507);
+    margin: auto;
+    margin-top: 25px;
+    height: 30vw;
+    width: 80vw;
+}
+
+.recipe-img {
+    border-radius: 0px 40px 0px 40px;
+    float:left;
+    width: 35%;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+}
+
+.recipe-text {
+    font-size: 150%;
+    float:right;
+    height: 100%;
+    width: 60%;
+    overflow: scroll;
+}
+
+.recipe-text::-webkit-scrollbar {
+    display: none;
+}

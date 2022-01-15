@@ -1,0 +1,29 @@
+<body>
+    <div class="div-recipe">
+        <img class="recipe-img" [src]="this.recipeService.photoURL+this.recipeService.currentRecipe.photoName">
+        <div class="recipe-text">
+            <h2>{{getRecipeData()}}</h2>
+            <h4>
+                Na jednego hamburgera wystarczy policzyć ok. 100-200 g wołowiny, w zależności od osób mających później naszego hamburgera skonsumować. Moja wersja dodatkowo nie budzi zastrzeżeń pod względem ilości spożywanych kalorii ;)
+            </h4>
+
+            <h4>Składniki:</h4>
+            <ul>
+                <li>
+                    Składnik 1 - 3 szklanki
+                </li>
+                <li>
+                    Składnik 2 - 2 sztuki
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="div-recipe">
+        <h2>Tu będą czynności!</h2>
+    </div>
+
+    <div class="div-recipe">
+        <h2>Tu będą recenzje!</h2>
+    </div>
+</body>

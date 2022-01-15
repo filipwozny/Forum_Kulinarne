@@ -12,9 +12,11 @@ export class RecipeService {
     public photoURL = 'http://localhost:64231/Photos/';
 
     public simpleRecipes: Array<recipeSimple> = [];
+    public currentRecipe: recipeSimple;
 
     constructor(private http: HttpClient, private userService: UserService) { 
         this.getSimpleRecipes();
+        this.currentRecipe = this.simpleRecipes[0];
     }
 
     getSimpleRecipes() {
