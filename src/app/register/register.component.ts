@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   public nazwa_uzytkownika: string = '';
@@ -40,7 +41,6 @@ export class RegisterComponent {
     console.log(newUser);
 
     if(this.checkPasswords() && this.checkName() && this.checkPhone() && this.checkMail()) {
-      console.log("Rejestracja...");
       this.userService.registerUser(newUser).subscribe(rest => {
         if(rest == "Dodano użytkownika") {
           this.registrationResult = true;

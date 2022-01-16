@@ -19,17 +19,11 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    try{
-      console.log(this.userService.user.nazwa_uzytkownika);
-    }
-    catch (e){
-      console.log("Brak danych użytkownika!");
-    }
   }
 
   goRecipeSite(recipeIndex: number) {
-    console.log(recipeIndex);
     this.recipeService.currentRecipe = this.recipeService.simpleRecipes[recipeIndex];
+    localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
     this.router.navigate(['/recipe']);
   }
 

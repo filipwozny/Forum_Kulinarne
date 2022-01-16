@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
 
@@ -21,7 +22,6 @@ export class LoginComponent {
 
 
     Login() {
-      console.log('Dane logowania: ' + this.login + ", " + this.haslo);
       this.userService.loginUser(this.login, this.haslo);
     }
 

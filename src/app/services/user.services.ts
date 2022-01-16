@@ -14,15 +14,20 @@ export class UserService {
     private userURL = 'http://localhost:64231/api/uzytkownicy';
 
     constructor(private http: HttpClient) { 
-        this.user = new User('Guest', '', '', '', 0);
-        this.czy_zalogowany = false;
+        if (localStorage.getItem('czy_zalogowany') === 'true') {
+            this.czy_zalogowany = true;
+        }
+        else {
+            this.czy_zalogowany = false;
+        }
+        this.user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     }
 
     loginUser(username: string, password: string) {
         let temp: User;
         this.http.get<Array<User>>(`${this.userURL}?id=${username}&pass=${password}`).subscribe( rest => { 
             temp = rest[0];
-            if(temp !== undefined) { this.czy_zalogowany=true; this.setUser(temp); }
+            if(temp !== undefined) { this.czy_zalogowany=true; localStorage.setItem('czy_zalogowany','true'); this.setUser(temp); localStorage.setItem('currentUser',JSON.stringify(temp)); }
          });
     }
 
@@ -37,6 +42,13 @@ export class UserService {
 
     existUser(username: string) {
         return this.http.get<Array<User>>(`${this.userURL}?id=${username}`);
+    }
+
+    logout() {
+        this.user = new User('Guest', '', '', '', 0);
+        localStorage.setItem('czy_zalogowany','false');
+        localStorage.setItem('currentUser',JSON.stringify(this.user));
+        this.czy_zalogowany = false;
     }
 
 }

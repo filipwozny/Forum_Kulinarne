@@ -1,20 +1,21 @@
 .div-recipe {
-    border: 5px solid #5c5c5c;
-    padding: 1vw;
+    padding-top: 1vw;
     border-radius: 0px 40px 0px 40px;
-    background-color:   rgba(202, 202, 202, 0.507);
-    margin: auto;
+    background-color:   rgb(51, 51, 51);
+    margin: 0;
     margin-top: 25px;
+    padding: 0;
     height: 30vw;
-    width: 80vw;
+    width: 100%;
+    color: white;
 }
 
 .recipe-img {
     border-radius: 0px 40px 0px 40px;
     float:left;
     width: 35%;
-    height: 100%;
-    margin: auto;
+    height: 90%;
+    margin: 1.5%;
     padding: 0;
 }
 
@@ -28,4 +29,20 @@
 
 .recipe-text::-webkit-scrollbar {
     display: none;
+}
+
+.czynnosci {
+    float: left;
+    width: 50%;
+    margin: 5%;
+    margin-top: 0%;
+}
+
+.skladniki {
+    float: left;
+    width: 40%;
+}
+
+.recenzje {
+    padding-bottom: 2vw;
 }

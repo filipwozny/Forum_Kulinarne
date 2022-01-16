@@ -20,13 +20,16 @@ export class RecipeService {
     }
 
     getSimpleRecipes() {
-        console.log("getRecipes()");
         this.http.get<Array<recipeSimple>>(`${this.userURL}`).subscribe( rest => { 
             for(let i = 0; i < rest.length; i++) {
-                let temp = new recipeSimple(rest[i].id_przepisu, rest[i].nazwa, rest[i].widocznosc, rest[i].photoName)
+                let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName)
                 this.simpleRecipes.push(temp);
             }
          });
+    }
+
+    getUserRecipes() {
+        return this.simpleRecipes.filter(x => x.autor === this.userService.user.nazwa_uzytkownika);
     }
 
 }

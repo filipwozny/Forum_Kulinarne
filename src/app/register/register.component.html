@@ -1,10 +1,7 @@
-<h1>Strona rejestracji</h1>
-
-<h2>Dane rejestracji:</h2>
-<div>
+<div class="div-register">
   <div>
     <label>
-      Nazwa użytkownika: <input id="nazwa_uzytkownika" type="text" 
+      Nazwa użytkownika: <input id="nazwa_uzytkownika" type="text" placeholder="Nazwa użytkownika"
       [(ngModel)]="nazwa_uzytkownika" required/>
       <div *ngIf="registrationStatus == 404"> 
         <a>Podana nazwa użytkownika jest zajęta!</a>
@@ -14,7 +11,7 @@
 
   <div>
     <label>
-      Imię: <input id="imie" type="text" 
+      Imię: <input id="imie" type="text" placeholder="Imię"
       onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
       [(ngModel)]="imie" required />
     </label>
@@ -22,7 +19,7 @@
 
   <div>
     <label>
-      Nazwisko: <input id="nazwisko" type="text" 
+      Nazwisko: <input id="nazwisko" type="text" placeholder="Nazwisko"
       onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
       [(ngModel)]="nazwisko" required/>
     </label>
@@ -30,14 +27,14 @@
 
   <div>
     <label>
-      Hasło: <input id="haslo" type="password" 
+      Hasło: <input id="haslo" type="password" placeholder="Hasło"
       [(ngModel)]="haslo" required/>
     </label>
   </div>
 
   <div>
     <label>
-      Powtórz Hasło: <input id="powtorzHaslo" type="password" 
+      Powtórz Hasło: <input id="powtorzHaslo" type="password" placeholder="Hasło"
       [(ngModel)]="powtorzHaslo" required/>
       <div *ngIf="checkPasswords() == false"> 
         <a>Podane hasła są różne!</a>
@@ -47,14 +44,14 @@
 
   <div>
     <label>
-      Telefon*: <input id="telefon" type="number" 
+      Telefon*: <input id="telefon" type="number" placeholder="To pole jest opcjonalne"
       [(ngModel)]="telefon"/>
     </label>
   </div>
 
   <div>
     <label>
-      E-mail*: <input id="mail" type="text" 
+      E-mail*: <input id="mail" type="text" placeholder="To pole jest opcjonalne"
       [(ngModel)]="mail"/>
       <div *ngIf="checkMail() == false"> 
         <a>Podane mail jest nieprawidłowy!</a>
@@ -62,7 +59,7 @@
     </label>
   </div>
 
-  <div>
+  <div style="padding-bottom: 3vw;">
     <button type="submit" (click)='Register()' [disabled]="nazwa_uzytkownika === '' || imie === '' || nazwisko === '' || haslo === '' || !checkPasswords()">Zarejerestruj</button>
   </div>
 </div>

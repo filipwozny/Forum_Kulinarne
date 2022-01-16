@@ -1,19 +1,24 @@
-<h1>Strona logowania</h1>
-
-<h2>Dane logowania:</h2>
-<label>
-  Nazwa użytkownika: <input id="login" type="text" 
-    [(ngModel)]="login" required/>
-</label>
-
-<label>
-  Hasło: <input id="haslo" type="password" 
-  [(ngModel)]="haslo" required/>
-</label>
-
-<button type="submit" (click)='Login()' [disabled]="login === '' || haslo === ''">Zaloguj</button>
-
-<div *ngIf="userService.czy_zalogowany == true"> 
-      <a>Zalogowano!</a>
-      {{ goHomeSite() }}
+<div class="div-login">
+  <div>
+    <label>
+      Nazwa użytkownika: <br><input id="login" type="text" 
+        [(ngModel)]="login" required/>
+    </label>
+  </div>
+  
+  <div>
+    <label>
+      Hasło: <br><input id="haslo" type="password" 
+      [(ngModel)]="haslo" required/>
+    </label>
+  </div>
+  
+  <div>
+    <button type="submit" (click)='Login()' [disabled]="login === '' || haslo === ''">Zaloguj</button>
+  </div>
+  
+  
+  <div *ngIf="userService.czy_zalogowany == true"> 
+        {{ goHomeSite() }}
+  </div>
 </div>

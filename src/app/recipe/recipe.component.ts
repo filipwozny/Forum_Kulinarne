@@ -17,19 +17,22 @@ export class RecipeComponent {
 
 
     constructor (public userService: UserService, private router: Router, public recipeService: RecipeService) {
-
+        this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
     }
 
     ngOnInit() {
-        try{
-            console.log(this.recipeService.currentRecipe);
-        }
-        catch (e) {
-            console.log(e);
-        }
+        
     }
 
-    getRecipeData() {
+    getRecipeName() {
         return (this.recipeService.currentRecipe.nazwa)
+    }
+
+    getRecipeAuthor() {
+        return (this.recipeService.currentRecipe.autor)
+    }
+
+    getRecipeRating() {
+        return (this.recipeService.currentRecipe.srednia_recenzji)
     }
 }

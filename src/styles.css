@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-image:url('./assets/background2.jpg');
+  background-image:url('./assets/background.jpg');
   background-size:cover; 
   background-position: center;
   background-repeat: repeat;
-  width:auto;
+  font-family: 'Atma', sans-serif;
+  width: auto;
   padding: 0;
 }

@@ -2,8 +2,11 @@
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
+  <div class="header">   
+    <img src="./assets/logo.gif" (click)="goHomeSite()"/>
+    <a>Przepisy na każdą porę dnia!</a>
+  </div>
     <div class="container">
-      <h1>ForumKulinarne</h1>
       <div
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
@@ -12,13 +15,22 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Strona główna</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+          <li class="nav-item" [routerLinkActive]="['link-active']" style="float:right" *ngIf="userService.czy_zalogowany !== true">
+            <a class="nav-link text-dark" [routerLink]="['/register']">Zarejestruj</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/register']">Register</a>
+          <li class="nav-item" [routerLinkActive]="['link-active']" style="float:right" *ngIf="userService.czy_zalogowany !== true">
+            <a class="nav-link text-dark" [routerLink]="['/login']">Zaloguj</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.czy_zalogowany === true">
+            <a class="nav-link text-dark" [routerLink]="['/my-recipes']">Moje przepisy</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.czy_zalogowany === true">
+            <a class="nav-link text-dark" [routerLink]="['/login']">Moje konto</a>
+          </li>
+          <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
+            <a class="nav-link text-dark" [routerLink]="['/']" (click)="userService.logout()">Wyloguj</a>
           </li>
         </ul>
       </div>
