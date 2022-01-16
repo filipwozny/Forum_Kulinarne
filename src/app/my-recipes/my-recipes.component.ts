@@ -16,17 +16,11 @@ import { recipeSimple } from 'app/models/recipe';
 
 export class MyRecipesComponent {
 
-    public myRecipes: Array<recipeSimple> = [];
-
     constructor (public userService: UserService, private router: Router, public recipeService: RecipeService) {
 
     }
 
     ngOnInit() {
-
     }
 
-    getMyRecipes() {
-        this.myRecipes = this.recipeService.getUserRecipes();
-    }
 }

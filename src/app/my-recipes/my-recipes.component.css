@@ -1,0 +1,58 @@
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 1vw;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 10px;
+  }
+  
+  li {
+    float: left;
+    height: 5vw;
+    width: 100%;
+  }
+  
+  li a {
+    float: left;
+    display: block;
+    color: white;
+    font-size: 2vw;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .button-delete {
+    float: right;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit:cover;
+    width: 10vw; 
+    height: 90%;
+    margin: auto;
+    margin-right: 0.5vw;
+    margin-top: 0.25vw;
+    padding: auto;
+    background-color: red;
+    color: white;
+  }
+
+  .button-edit {
+    float: right;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit:cover;
+    width: 10vw; 
+    height: 90%;
+    margin: auto;
+    margin-right: 0.5vw;
+    margin-top: 0.25vw;
+    padding: auto;
+    background-color: green;
+    color: white;
+  }

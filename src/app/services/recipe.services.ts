@@ -13,10 +13,12 @@ export class RecipeService {
 
     public simpleRecipes: Array<recipeSimple> = [];
     public currentRecipe: recipeSimple;
+    public userRecipes: Array<recipeSimple> = [];
 
     constructor(private http: HttpClient, private userService: UserService) { 
         this.getSimpleRecipes();
         this.currentRecipe = this.simpleRecipes[0];
+        this.userRecipes = this.getUserRecipes();
     }
 
     getSimpleRecipes() {
@@ -32,4 +34,7 @@ export class RecipeService {
         return this.simpleRecipes.filter(x => x.autor === this.userService.user.nazwa_uzytkownika);
     }
 
+    getArrayUserRecipes() {
+        return this.userRecipes;
+    }
 }
