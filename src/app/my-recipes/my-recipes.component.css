@@ -29,36 +29,20 @@
     text-decoration: none;
   }
 
-  .button-delete {
-    float: right;
-    border-radius: 10px;
-    cursor: pointer;
-    object-fit:cover;
-    width: 10vw; 
+  button {
+    border-radius: 10px 10px 10px 10px;
     height: 90%;
-    margin: auto;
+    min-width: 5%;
+    float: right;
+    display: block; 
+    margin-left: 0.5vw;
     margin-right: 0.5vw;
-    margin-top: 0.25vw;
-    padding: auto;
-    background-color: red;
+    margin-bottom: 0.2vw;
+    margin-top: 0.2vw;
+    cursor: pointer;
     font-family: 'Atma', sans-serif;
-    font-size: 2vw;
-    color: white;
-  }
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5vw;
 
-  .button-edit {
-    float: right;
-    border-radius: 10px;
-    cursor: pointer;
-    object-fit:cover;
-    width: 10vw; 
-    height: 90%;
-    margin: auto;
-    margin-right: 0.5vw;
-    margin-top: 0.25vw;
-    padding: auto;
-    background-color: green;
-    font-family: 'Atma', sans-serif;
-    font-size: 2vw;
-    color: white;
-  }
+}

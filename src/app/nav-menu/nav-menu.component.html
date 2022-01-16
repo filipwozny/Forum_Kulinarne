@@ -27,7 +27,7 @@
             <a class="nav-link text-dark" [routerLink]="['/my-recipes']">Moje przepisy</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.czy_zalogowany === true">
-            <a class="nav-link text-dark" [routerLink]="['/login']">Moje konto</a>
+            <a class="nav-link text-dark" [routerLink]="['/my-account']">Moje konto</a>
           </li>
           <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
             <a class="nav-link text-dark" [routerLink]="['/']" (click)="userService.logout()">Wyloguj</a>
