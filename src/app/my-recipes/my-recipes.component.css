@@ -1,6 +1,19 @@
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
   }
+
+.div-title {
+  margin-top: 1vw;
+  padding: 0;
+  background-color: #333;
+  border-radius: 10px;
+  display: block;
+  color: white;
+  font-size: 2vw;
+  width: 12vw;
+  padding-left: 1vw;
+  padding-top: 0.5vw;
+}
   
   ul {
     list-style-type: none;

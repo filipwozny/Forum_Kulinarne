@@ -29,6 +29,15 @@
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.czy_zalogowany === true">
             <a class="nav-link text-dark" [routerLink]="['/my-account']">Moje konto</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.czy_zalogowany === true">
+            <a class="nav-link text-dark" [routerLink]="['/my-recipes']">Stwórz przepis</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.user.czy_admin != 0">
+            <a class="nav-link text-dark" [routerLink]="['/my-recipes']">Zgłoszone przepisy</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userService.user.czy_admin != 0">
+            <a class="nav-link text-dark" [routerLink]="['/my-recipes']">Zgłoszone recenzje</a>
+          </li>
           <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
             <a class="nav-link text-dark" [routerLink]="['/']" (click)="userService.logout()">Wyloguj</a>
           </li>
