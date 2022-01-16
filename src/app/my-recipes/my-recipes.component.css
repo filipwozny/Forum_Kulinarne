@@ -13,7 +13,7 @@
   
   li {
     float: left;
-    height: 5vw;
+    height: 4vw;
     width: 100%;
   }
   
@@ -23,7 +23,9 @@
     color: white;
     font-size: 2vw;
     text-align: center;
-    padding: 14px 16px;
+    height: 90%;
+    padding-left: 1vw;
+    padding-top: 0.5vw;
     text-decoration: none;
   }
 
@@ -39,6 +41,8 @@
     margin-top: 0.25vw;
     padding: auto;
     background-color: red;
+    font-family: 'Atma', sans-serif;
+    font-size: 2vw;
     color: white;
   }
 
@@ -54,5 +58,7 @@
     margin-top: 0.25vw;
     padding: auto;
     background-color: green;
+    font-family: 'Atma', sans-serif;
+    font-size: 2vw;
     color: white;
   }
