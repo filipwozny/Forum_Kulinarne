@@ -26,6 +26,8 @@ export class HomeComponent {
 
   goRecipeSite(recipeIndex: number) {
     this.recipeService.currentRecipe = this.recipeService.simpleRecipes[recipeIndex];
+    this.recipeService.getCurrentRecipeActions();
+    this.recipeService.getCurrentRecipeIngerdients();
     localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
     this.router.navigate(['/recipe']);
   }

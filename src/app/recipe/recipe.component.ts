@@ -6,6 +6,8 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-przepis',
@@ -19,10 +21,12 @@ export class RecipeComponent {
 
     constructor (public userService: UserService, private router: Router, public recipeService: RecipeService, private datePipe: DatePipe) {
         this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
+        this.recipeService.getCurrentRecipeActions();
+        this.recipeService.getCurrentRecipeIngerdients();
     }
 
     ngOnInit() {
-        
+        console.log(this.recipeService.currentRecipe.id_przepisu)
     }
 
     getRecipeName() {
@@ -48,4 +52,9 @@ export class RecipeComponent {
     getRecipeDate() {
         return this.transformDate(this.recipeService.currentRecipe.data_dodania)
     }
+
+    getRecipeActions() {
+        return this.recipeService.currentRecipeActions;
+    }
+
 }

@@ -89,19 +89,20 @@ export class CreateRecipeComponent {
     }
 
     deleteIngredients(nazwa: string) {
-        var index = this.newRecipeIngredients.findIndex(x => x.nazwa === nazwa);
+        var index = this.newRecipeIngredients.findIndex(x => x.skladnik_nazwa === nazwa);
         this.newRecipeIngredients.splice(index,1);
     }
 
 
     publish() {
         this.recipeService.upload(this.selectedFile.file);
+        let recipeNumber = this.recipeService.simpleRecipes.length;
         let categoryID: Array<number> = [];
         this.categoryArray.forEach(element => {
             if(element >= 1) {
                 categoryID.push(element)
             }    
         });
-        this.recipeService.postRecipe(this.recipeName, this.description, this.fileName, this.newRecipeActions, this.newRecipeIngredients, categoryID);
+        this.recipeService.postRecipe(this.recipeName, this.description, this.fileName, this.newRecipeActions, this.newRecipeIngredients, categoryID)
     }
 }

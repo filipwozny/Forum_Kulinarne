@@ -1,4 +1,4 @@
-<div class="div-recipe">
+<div class="div-block">
     <img class="recipe-img" [src]="this.recipeService.photoURL+this.recipeService.currentRecipe.photoName">
     <div class="recipe-text">
         <div>
@@ -21,18 +21,24 @@
 
 <div class="div-recipe">
     <div class="czynnosci">
-        <h2>Czynnosći:</h2>
+        <h2>Czynności:</h2>
+        <div *ngFor="let item of this.recipeService.currentRecipeActions">
+            <ul>
+              <li>
+                  <a>{{item.kolejnosc_w_przepisie}}. {{item.opis}}</a>
+              </li>
+            </ul>
+        </div>
     </div>
     <div class="skladniki">
         <h2>Składniki:</h2>
-        <ul>
-            <li>
-                Składnik 1 - 3 szklanki
-            </li>
-            <li>
-                Składnik 2 - 2 sztuki
-            </li>
-        </ul>
+        <div *ngFor="let item of this.recipeService.currentRecipeIngredients">
+            <ul style="list-style-type:square;">
+              <li>
+                  <a>{{item.skladnik_nazwa}} - {{item.ilosc}} {{item.jednostka_nazwa}}</a>
+              </li>
+            </ul>
+        </div>
     </div>
 </div>
 

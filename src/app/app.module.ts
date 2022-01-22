@@ -34,7 +34,8 @@ import { User } from './models/user';
     SafePipe,
     MyRecipesComponent,
     MyAccountComponent,
-    CreateRecipeComponent
+    CreateRecipeComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,

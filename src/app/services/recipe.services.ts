@@ -9,6 +9,7 @@ import { Action } from '../models/action';
 import { Ingredient } from 'app/models/ingredient';
 import { SimpleIngredient } from 'app/models/ingredient-simple';
 import { RecipeCategory } from 'app/models/recipe-category';
+import { Router } from '@angular/router';
 
 
 
@@ -30,8 +31,19 @@ export class RecipeService {
     public userRecipes: Array<recipeSimple> = [];
     public units: Array<Unit> = [];
     public ingredientsName: Array<SimpleIngredient> = [];
+    public currentRecipeActions: Array<Action> = [];
+    public currentRecipeIngredients: Array<Ingredient> = [];
 
-    constructor(private http: HttpClient, private userService: UserService) { 
+    constructor(private http: HttpClient, private userService: UserService, private router: Router) { 
+        this.getSimpleRecipes();
+        this.currentRecipe = this.simpleRecipes[0];
+        this.userRecipes = this.getUserRecipes();
+        this.getCategories();
+        this.getUnits();
+        this.getIngredientsName();
+    }
+
+    update() {
         this.getSimpleRecipes();
         this.currentRecipe = this.simpleRecipes[0];
         this.userRecipes = this.getUserRecipes();
@@ -75,6 +87,10 @@ export class RecipeService {
         })
     }
 
+    postSuccessful() {
+        this.router.navigate(['/']);
+    }
+
     postRecipe(recipeName: string, description: string, fileName: string, newRecipeActions: Array<Action>, newRecipeIngredients: Array<Ingredient>, categoryArray: Array<number>) {
         let todayDate: Date = new Date();
         let newRecipe = new recipeSimple(-1, 0, recipeName, this.userService.user.nazwa_uzytkownika, 1, fileName, description, todayDate);
@@ -87,11 +103,11 @@ export class RecipeService {
                        this.postActions(action);
                    });
                    newRecipeIngredients.forEach(ingredient => {
-                        ingredient.id_przepisu = rest1[0].id_przepisu;
-                        if(this.ingredientsName.some(function(element) {return element.nazwa === ingredient.nazwa;}))
+                        ingredient.przepis_id = rest1[0].id_przepisu;
+                        if(this.ingredientsName.some(function(element) {return element.nazwa === ingredient.skladnik_nazwa;}))
                             this.postIngredients(ingredient);
                         else {
-                            let newIngredientName = new SimpleIngredient(ingredient.nazwa);
+                            let newIngredientName = new SimpleIngredient(ingredient.skladnik_nazwa);
                             this.http.post(this.ingredientNameURL, newIngredientName).subscribe( rest => { 
                                 this.postIngredients(ingredient);
                             });
@@ -101,6 +117,8 @@ export class RecipeService {
                         this.postRecipeCategory(recipeCat);
                     })
                 });
+                this.update();
+                this.postSuccessful();
                 })
             }
         })
@@ -134,6 +152,21 @@ export class RecipeService {
     getIngredientsName() {
         this.http.get<Array<SimpleIngredient>>(`${this.ingredientNameURL}`).subscribe( rest => { 
             this.ingredientsName = rest;
+        });
+    }
+
+    getCurrentRecipeActions() {
+        this.http.get<Array<Action>>(`${this.actionURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => { 
+            let sorted = rest.sort((a, b) => (a.kolejnosc_w_przepisie > b.kolejnosc_w_przepisie) ? 1 : -1);
+            this.currentRecipeActions = sorted;
+        });
+    }
+
+    getCurrentRecipeIngerdients() {
+        this.http.get<Array<Ingredient>>(`${this.ingredientURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => { 
+            let sorted = rest.sort((a, b) => (a.skladnik_nazwa > b.skladnik_nazwa) ? 1 : -1);
+            this.currentRecipeIngredients = sorted;
+            console.log(sorted)
         });
     }
 }

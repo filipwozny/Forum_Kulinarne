@@ -33,6 +33,7 @@
 .div-left {
     float: left;
     width: 40%;
+    height: max-content;
 }
 
 .input-text {
@@ -171,7 +172,6 @@ ul {
 
 option {
     color: black;
-    text-transform:uppercase;
 }
 
 a {

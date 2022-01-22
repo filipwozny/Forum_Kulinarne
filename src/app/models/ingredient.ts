@@ -1,8 +1,8 @@
 export class Ingredient {
     constructor(
-    public nazwa: string,
+    public skladnik_nazwa: string,
     public ilosc: number,
-    public jednostka: string,
-    public id_przepisu?: number
+    public jednostka_nazwa: string,
+    public przepis_id?: number
     ) {};
 }
