@@ -23,4 +23,8 @@ export class MyRecipesComponent {
     ngOnInit() {
     }
 
+    deleteRecipe(id_przepisu: number) {
+        console.log(id_przepisu)
+    }
+
 }

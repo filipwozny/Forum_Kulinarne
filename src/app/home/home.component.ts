@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/user.services';
 import { RecipeService } from '../services/recipe.services';
 import { User } from '../models/user';
+import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -15,6 +16,8 @@ import { Router } from '@angular/router';
 
 export class HomeComponent {
 
+  public filter: string | undefined;
+
   constructor (public userService: UserService, public recipeService: RecipeService, private router: Router) {
   }
 
@@ -25,6 +28,16 @@ export class HomeComponent {
     this.recipeService.currentRecipe = this.recipeService.simpleRecipes[recipeIndex];
     localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
     this.router.navigate(['/recipe']);
+  }
+
+  selectFilter(categoryName: string) {
+    if (this.filter != categoryName) {
+      this.filter = categoryName;
+    }
+    else {
+      this.filter = undefined;
+    }
+    console.log(this.filter)
   }
 
 }

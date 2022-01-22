@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SafePipe } from './safe.pipe';
+import { DatePipe } from '@angular/common';
 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 
 import { UserService } from './services/user.services';
 import { RecipeService } from './services/recipe.services';
@@ -31,7 +33,8 @@ import { User } from './models/user';
     RegisterComponent,
     SafePipe,
     MyRecipesComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    CreateRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +47,11 @@ import { User } from './models/user';
       { path: 'register', component: RegisterComponent },
       { path: 'recipe', component: RecipeComponent },
       { path: 'my-recipes', component: MyRecipesComponent },
-      { path: 'my-account', component: MyAccountComponent }
+      { path: 'my-account', component: MyAccountComponent },
+      { path: 'create-recipe', component: CreateRecipeComponent }
     ])
   ],
-  providers: [HttpClientModule,HttpService,UserService,RecipeService],
+  providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

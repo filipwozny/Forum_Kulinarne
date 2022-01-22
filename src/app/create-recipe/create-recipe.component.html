@@ -1,0 +1,91 @@
+<div class="div-recipe">
+    <div class="div-left">
+        <div>
+            <img class="recipe-img" [src]="url">
+        </div>
+        <label class="image-upload-container btn btn-bwm" style="padding-left: 35%">
+            <span class="selectImage"></span>
+            <input #imageInput
+                   type="file"
+                   accept="image/*"
+                   (change)="processFile(imageInput)">
+        </label>
+    </div>
+    <div class="div-right">
+        <div>
+            <h2>Nazwa:</h2>
+            <input class="input-text" type="text" [(ngModel)]="recipeName" required/>
+        </div>
+        <div>
+            <h2>Kategorie:</h2>
+            <form>
+                <select name="category1" class="select-category" [(ngModel)]="categoryArray[0]" required>
+                    <option></option>
+                    <option *ngFor="let item of this.recipeService.categories" [value]="item.id">{{item.nazwa}}</option>
+                </select>
+                <select name="category2" class="select-category" [(ngModel)]="categoryArray[1]">
+                    <option></option>
+                    <option *ngFor="let item of this.recipeService.categories" [value]="item.id">{{item.nazwa}}</option>
+                </select>
+                <select name="category3" class="select-category" [(ngModel)]="categoryArray[2]">
+                    <option></option>
+                    <option *ngFor="let item of this.recipeService.categories" [value]="item.id">{{item.nazwa}}</option>
+                </select>
+              </form>
+              
+        </div>
+        <div>
+            <h2>Opis:</h2>
+            <textarea name="Text1" maxlength=1023 [(ngModel)]="description"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="div-recipe">
+    <div class="czynnosci">
+        <h2>Czynności:</h2>
+        <label style="display: block;">
+            <textarea id="textArea" class="textarea-actions" name="ActionText" placeholder="Opis czynności" maxlength=255 [(ngModel)]="textArea"> </textarea>
+            <button class="add-action-button" (click)="addAction()">Dodaj</button>
+        </label>
+        <div *ngFor="let item of this.newRecipeActions">
+            <ul>
+              <li>
+                  <button class="button-delete" (click)="deleteAction(item.kolejnosc_w_przepisie-1)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg></button>
+                  <a>{{item.kolejnosc_w_przepisie}}. {{item.opis}}</a>
+              </li>
+            </ul>
+          </div>
+    </div>
+    <div class="skladniki">
+        <h2>Składniki:</h2>
+        <label style="display: block;">
+            <input id="inputIngredients" class="input-list" name="ActionText" placeholder="Składnik" list="skladniki" maxlength=63 [(ngModel)]="inputIngredient">
+            <datalist id="skladniki">
+                <option *ngFor="let item of this.recipeService.ingredientsName" [value]="item.nazwa">{{item.nazwa}}</option>
+            </datalist>
+            <input id="inputIngredients" type="number" class="input-ingredients" placeholder="Ilość" [(ngModel)]="quantity" min="0" oninput="this.value = Math.abs(this.value)">
+            <select class="select-ingredients" [(ngModel)]="chosenUnit">
+                <option *ngFor="let item of this.recipeService.units" [value]="item.nazwa">{{item.nazwa}}</option>
+              </select>
+            <button class="add-ingredients-button" (click)="addIngredients()">Dodaj</button>
+        </label>
+        <div *ngFor="let item of this.newRecipeIngredients">
+            <ul>
+              <li>
+                  <button class="button-delete" (click)="deleteIngredients(item.nazwa)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg></button>
+                  <a>{{item.nazwa}} - {{item.ilosc}} {{item.jednostka}}</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div>
+    <button class="submit-button" type="submit" (click)="publish()">Opublikuj</button>
+</div>

@@ -51,4 +51,11 @@ export class UserService {
         this.czy_zalogowany = false;
     }
 
+    updateUser(val: any) {
+        this.user = val;
+        localStorage.setItem('currentUser',JSON.stringify(this.user));
+        console.log(this.user)
+        this.http.put(this.userURL, this.user).subscribe(rest => {console.log(rest)});
+    }
+
 }

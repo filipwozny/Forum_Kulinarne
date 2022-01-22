@@ -15,18 +15,28 @@ import { recipeSimple } from 'app/models/recipe';
 
 
 export class MyAccountComponent {
-
     public hidePassword = true;
 
-    constructor (public userService: UserService, private router: Router, public recipeService: RecipeService) {
+    public changeUserData: User;
+    
 
+    constructor (public userService: UserService, private router: Router, public recipeService: RecipeService) {
+      this.changeUserData = new User(this.userService.user.nazwa_uzytkownika, this.userService.user.haslo, this.userService.user.imie, 
+        this.userService.user.nazwisko, this.userService.user.czy_admin, this.userService.user.telefon, this.userService.user.mail);
     }
 
     ngOnInit() {
+      console.log(this.changeUserData)
     }
 
     showPassword() {
         this.hidePassword = !this.hidePassword;
+    }
+
+    saveAccount() {
+      console.log(typeof(this.changeUserData))
+      console.log(this.changeUserData.imie, this.changeUserData.nazwisko, this.changeUserData.haslo)
+      console.log(this.userService.updateUser(this.changeUserData));
     }
 
 }

@@ -5,6 +5,7 @@ import { RecipeService } from '../services/recipe.services';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-przepis',
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class RecipeComponent {
 
 
-    constructor (public userService: UserService, private router: Router, public recipeService: RecipeService) {
+    constructor (public userService: UserService, private router: Router, public recipeService: RecipeService, private datePipe: DatePipe) {
         this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
     }
 
@@ -34,5 +35,17 @@ export class RecipeComponent {
 
     getRecipeRating() {
         return (this.recipeService.currentRecipe.srednia_recenzji)
+    }
+
+    getRecipeDescription() {
+        return (this.recipeService.currentRecipe.opis)
+    }
+
+    transformDate(date: any) {
+        return this.datePipe.transform(date, 'dd-MM-yyyy');
+    }
+
+    getRecipeDate() {
+        return this.transformDate(this.recipeService.currentRecipe.data_dodania)
     }
 }

@@ -1,0 +1,205 @@
+.div-recipe {
+    padding-top: 1vw;
+    border-radius: 0px 40px 0px 40px;
+    background-color:   rgb(51, 51, 51);
+    margin: 0;
+    margin-top: 25px;
+    padding: 0;
+    min-height: 30vw;
+    height: auto;
+    width: 100%;
+    display: flex;
+    color: white;
+}
+
+.recipe-img {
+    border-radius: 0px 40px 0px 40px;
+    object-fit:cover;
+    width: 90%; 
+    max-height: 26vw;
+    height: auto;
+    margin: auto;
+    padding: auto;
+    padding-top: 1vw;
+    padding-left: 1vw;
+}
+
+.div-right {
+    float: right;
+    width: 60%;
+    height: max-content;
+}
+
+.div-left {
+    float: left;
+    width: 40%;
+}
+
+.input-text {
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    height: auto;
+    font-family: 'Atma', sans-serif;
+    font-size: 40px;
+    margin-top: -1vw;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
+textarea {
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    font-family: 'Atma', sans-serif;
+    font-size: 40px;
+    margin-top: -1vw;
+    resize: vertical; 
+    height: 15vw;
+}
+
+.czynnosci {
+    float: left;
+    width: 46%;
+    margin: 2%;
+    margin-right: 0;
+    margin-top: 0%;
+    height: auto;
+    overflow: scroll;
+}
+
+.skladniki {
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: 50%;
+}
+
+.textarea-actions {
+    border-radius: 10px 10px 10px 10px;
+    width: 70%;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -1vw;
+    height: 80px;
+}
+
+.textarea-ingredients {
+    border-radius: 10px 10px 10px 10px;
+    width: 40%;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -1vw;
+    height: 40px;
+}
+
+.input-list {
+    border-radius: 10px 10px 10px 10px;
+    width: 40%;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -1vw;
+    height: 40px;
+}
+
+.input-ingredients {
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 1%;
+    width: 5%;
+    position: absolute;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -0.7vw;
+    height: 40px;
+}
+
+.select-ingredients {
+    border-radius: 10px 10px 10px 10px;
+    width: 12%;
+    margin-left: 7.5%;
+    position: absolute;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -0.7vw;
+    height: 45px;
+}
+
+.add-action-button {
+    margin-left: 2%;
+    margin-top: -0.5vw;
+    position: absolute;
+    height: 66px; 
+    width: 7%; 
+    min-width: 30px; 
+    border-radius: 10px 10px 10px 10px;
+    font-family: 'Atma', sans-serif;
+    font-size: 30px;
+}
+
+.add-ingredients-button {
+    margin-left: 20.5%;
+    margin-top: -0.8vw;
+    position: absolute;
+    height: 46px; 
+    width: 7%; 
+    min-width: 30px; 
+    border-radius: 10px 10px 10px 10px;
+    font-family: 'Atma', sans-serif;
+    font-size: 30px;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.czynnosci::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.czynnosci {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+
+ul {
+      max-width: 90%;
+      list-style-type: none;
+  }
+
+.button-delete {
+    margin-right: 1%;
+}
+
+option {
+    color: black;
+    text-transform:uppercase;
+}
+
+a {
+    font-size: 200%;
+}
+
+form {
+    width: 100%;
+    display: inline-block;
+}
+
+.select-category {
+    border-radius: 10px 10px 10px 10px;
+    width: 30%;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-top: -1vw;
+    height: 45px;
+}
+
+.submit-button {
+    border-radius: 10px 10px 10px 10px;
+    width: 15%;
+    min-width: 200px;
+    height: 15%;
+    font-size: 300%;
+    background-color: rgb(34, 189, 34);
+    margin-top: 1vw;
+    margin-left: 40%;
+    font-family: 'Atma', sans-serif;
+}

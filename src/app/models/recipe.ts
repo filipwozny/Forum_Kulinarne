@@ -6,5 +6,7 @@ export class recipeSimple {
         public autor: string,
         public widocznosc: number,
         public photoName: string,
+        public opis: string,
+        public data_dodania: Date
         ) {};
 }
