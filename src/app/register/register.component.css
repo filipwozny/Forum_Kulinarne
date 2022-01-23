@@ -15,7 +15,7 @@ label {
     padding-top: 2vw;
     width: 60%;
     height: 20%;
-    display: block; 
+    display: block;
     color: white;
 }
 
@@ -31,7 +31,7 @@ button {
     margin-top: 2vw;
     border-radius: 10px 10px 10px 10px;
     height: 50px;
-    display: block; 
+    display: block;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -46,3 +46,14 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.login-info{
+
+  font-size:1.5vw;
+  color:#fd0606;
+  font-weight:bold;
+  font-style:italic;
+  text-align: center;
+
+}
+

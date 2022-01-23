@@ -34,7 +34,7 @@ export class RecipeService {
     public currentRecipeActions: Array<Action> = [];
     public currentRecipeIngredients: Array<Ingredient> = [];
 
-    constructor(private http: HttpClient, private userService: UserService, private router: Router) { 
+    constructor(private http: HttpClient, private userService: UserService, private router: Router) {
         this.getSimpleRecipes();
         this.currentRecipe = this.simpleRecipes[0];
         this.userRecipes = this.getUserRecipes();
@@ -53,7 +53,7 @@ export class RecipeService {
     }
 
     getSimpleRecipes() {
-        this.http.get<Array<recipeSimple>>(`${this.recipeURL}`).subscribe( rest => { 
+        this.http.get<Array<recipeSimple>>(`${this.recipeURL}`).subscribe( rest => {
             for(let i = 0; i < rest.length; i++) {
                 let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName, rest[i].opis, rest[i].data_dodania)
                 this.simpleRecipes.push(temp);
@@ -70,18 +70,18 @@ export class RecipeService {
     }
 
     getCategories() {
-        this.http.get<Array<Category>>(`${this.categoryURL}`).subscribe( rest => { 
+        this.http.get<Array<Category>>(`${this.categoryURL}`).subscribe( rest => {
             let sorted = rest.sort((a, b) => (a.nazwa > b.nazwa) ? 1 : -1);
             this.categories = sorted; });
     }
 
     upload(file: any) {
         // Create form data
-        const formData = new FormData(); 
-            
+        const formData = new FormData();
+
         // Store form name as "file" with file data
         formData.append("file", file);
-            
+
         this.http.post(this.recipeURL+'/SaveFile', formData).subscribe( rest => {
             console.log(rest)
         })
@@ -108,7 +108,7 @@ export class RecipeService {
                             this.postIngredients(ingredient);
                         else {
                             let newIngredientName = new SimpleIngredient(ingredient.skladnik_nazwa);
-                            this.http.post(this.ingredientNameURL, newIngredientName).subscribe( rest => { 
+                            this.http.post(this.ingredientNameURL, newIngredientName).subscribe( rest => {
                                 this.postIngredients(ingredient);
                             });
                         }
@@ -144,26 +144,26 @@ export class RecipeService {
     }
 
     getUnits() {
-        this.http.get<Array<Unit>>(`${this.unitsURL}`).subscribe( rest => { 
+        this.http.get<Array<Unit>>(`${this.unitsURL}`).subscribe( rest => {
             this.units = rest;
         });
     }
 
     getIngredientsName() {
-        this.http.get<Array<SimpleIngredient>>(`${this.ingredientNameURL}`).subscribe( rest => { 
+        this.http.get<Array<SimpleIngredient>>(`${this.ingredientNameURL}`).subscribe( rest => {
             this.ingredientsName = rest;
         });
     }
 
     getCurrentRecipeActions() {
-        this.http.get<Array<Action>>(`${this.actionURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => { 
+        this.http.get<Array<Action>>(`${this.actionURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => {
             let sorted = rest.sort((a, b) => (a.kolejnosc_w_przepisie > b.kolejnosc_w_przepisie) ? 1 : -1);
             this.currentRecipeActions = sorted;
         });
     }
 
     getCurrentRecipeIngerdients() {
-        this.http.get<Array<Ingredient>>(`${this.ingredientURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => { 
+        this.http.get<Array<Ingredient>>(`${this.ingredientURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => {
             let sorted = rest.sort((a, b) => (a.skladnik_nazwa > b.skladnik_nazwa) ? 1 : -1);
             this.currentRecipeIngredients = sorted;
             console.log(sorted)

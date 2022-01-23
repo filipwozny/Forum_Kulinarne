@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.services';
-import { User } from '../models/user';
 import { Router } from '@angular/router';
-
+import { User } from 'app/models/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,6 +19,7 @@ export class RegisterComponent {
 
   public registrationResult: boolean = false;
   public registrationStatus: number = 0;
+
   // 0 - init value
   // 1 - registration completed
   // 404 - username is taken
@@ -27,7 +27,7 @@ export class RegisterComponent {
 
   constructor (public userService: UserService, private router: Router) {
   }
-  
+
   Register() {
     var newUser = {
       nazwa_uzytkownika:this.nazwa_uzytkownika,

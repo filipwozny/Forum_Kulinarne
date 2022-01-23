@@ -5,7 +5,7 @@ export class User {
     public imie: string,
     public nazwisko: string,
     public czy_admin: number,
-    public telefon?: number,
+    public numer_telefonu?: number,
     public mail?: string,
     ) {};
 }

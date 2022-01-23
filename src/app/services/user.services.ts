@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import {  HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of,Observable } from 'rxjs';
@@ -9,11 +10,12 @@ import { User } from '../models/user';
 export class UserService {
 
     public user: User;
-    public czy_zalogowany: boolean;
+    public czy_zalogowany: boolean = false;
+
 
     private userURL = 'http://localhost:64231/api/uzytkownicy';
 
-    constructor(private http: HttpClient) { 
+    constructor(private http: HttpClient ) {
         if (localStorage.getItem('czy_zalogowany') === 'true') {
             this.czy_zalogowany = true;
         }
@@ -25,10 +27,19 @@ export class UserService {
 
     loginUser(username: string, password: string) {
         let temp: User;
-        this.http.get<Array<User>>(`${this.userURL}?id=${username}&pass=${password}`).subscribe( rest => { 
+        this.http.get<Array<User>>(`${this.userURL}?id=${username}&pass=${password}`).subscribe( rest => {
             temp = rest[0];
-            if(temp !== undefined) { this.czy_zalogowany=true; localStorage.setItem('czy_zalogowany','true'); this.setUser(temp); localStorage.setItem('currentUser',JSON.stringify(temp)); }
-         });
+            if(temp !== undefined) {
+              this.czy_zalogowany=true;
+              localStorage.setItem('czy_zalogowany','true');
+              this.setUser(temp); localStorage.setItem('currentUser',JSON.stringify(temp));
+            }
+            else{
+              this.czy_zalogowany=false;
+            }
+          ;
+          });
+
     }
 
     setUser(newUser: User) {

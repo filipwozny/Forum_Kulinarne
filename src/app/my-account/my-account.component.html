@@ -4,22 +4,22 @@
         Nazwa użytkownika: <input id="nazwa_uzytkownika" type="text" value={{this.userService.user.nazwa_uzytkownika}} readonly/>
       </label>
     </div>
-  
+
     <div>
       <label>
         Imię: <input id="imie" type="text" value={{this.userService.user.imie}}  [(ngModel)]="changeUserData.imie"/>
       </label>
     </div>
-  
+
     <div>
       <label>
         Nazwisko: <input id="nazwisko" type="text" value={{this.userService.user.nazwisko}} [(ngModel)]="changeUserData.nazwisko"/>
       </label>
     </div>
-  
+
     <div>
       <label>
-        Hasło: 
+        Hasło:
         <div style="display: flex;">
             <input class="password-input" id="haslo" [type]="hidePassword ? 'password' : 'text'" value={{this.userService.user.haslo}} [(ngModel)]="changeUserData.haslo"/>
             <button class="password-button" (click)="showPassword()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -29,20 +29,24 @@
         </div>
       </label>
     </div>
-  
+
     <div>
       <label>
-        Telefon*: <input id="telefon" type="number" value={{this.userService.user.telefon}} [(ngModel)]="changeUserData.telefon"/>
+        Telefon*: <input id="telefon" type="number" value={{this.userService.user.numer_telefonu}} [(ngModel)]="changeUserData.numer_telefonu"/>
       </label>
     </div>
-  
+
     <div>
       <label>
         E-mail*: <input id="mail" type="text" value={{this.userService.user.mail}} [(ngModel)]="changeUserData.mail"/>
       </label>
     </div>
-  
+
     <div style="padding-bottom: 3vw;">
       <button type="submit" (click)="saveAccount()">Zapisz</button>
+    </div>
+
+    <div class="login-info" *ngIf="check == true">
+      Dane zostały zaktualizowane!!!
     </div>
   </div>
