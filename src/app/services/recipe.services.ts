@@ -11,6 +11,7 @@ import { SimpleIngredient } from 'app/models/ingredient-simple';
 import { RecipeCategory } from 'app/models/recipe-category';
 import { Router } from '@angular/router';
 import { Review } from 'app/models/review';
+import { Report } from 'app/models/report';
 
 
 
@@ -37,16 +38,17 @@ export class RecipeService {
     public currentRecipeIngredients: Array<Ingredient> = [];
     public AllReviews: Array<Review> = [];
     public currentReviews: Array<Review> = [];
+    public reportForm: Report;
 
     constructor(private http: HttpClient, private userService: UserService, private router: Router) {
         this.getSimpleRecipes();
         this.currentRecipe = this.simpleRecipes[0];
         this.userRecipes = this.getUserRecipes();
+        this.reportForm = new Report("","",0,"");
         this.getCategories();
         this.getUnits();
         this.getIngredientsName();
         this.getAllReviews();
-
     }
 
     update() {
@@ -88,7 +90,8 @@ export class RecipeService {
     }
 
     getAllReviews() {
-      this.http.get<Array<Review>>(`${this.reviewURL}`).subscribe( rest => {
+        this.http.get<Array<Review>>(`${this.reviewURL}`).subscribe( rest => {
+        this.AllReviews = [];
         for(let i = 0; i < rest.length; i++) {
           let temp = new Review(rest[i].id_recenzji, rest[i].przepis_id_przepisu, rest[i].uzytkownik_nazwa_uzytkownika, rest[i].ocena, rest[i].widocznosc, rest[i].data_dodania, rest[i].komentarz)
           this.AllReviews.push(temp);
@@ -188,5 +191,18 @@ export class RecipeService {
             this.currentRecipeIngredients = sorted;
             console.log(sorted)
         });
+    }
+
+    postReview(comment: string, rating: number) {
+        let todayDate: Date = new Date();
+        let newReview = new Review(0,this.currentRecipe.id_przepisu, this.userService.user.nazwa_uzytkownika, rating, true, todayDate, comment);
+
+        this.http.post(this.reviewURL, newReview).subscribe( rest => {
+            window.location.reload();
+        })
+    }
+
+    setReportType(type: string) {
+        this.reportForm.reportType = type;
     }
 }
