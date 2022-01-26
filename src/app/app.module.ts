@@ -24,6 +24,8 @@ import { RecipeService } from './services/recipe.services';
 
 
 import { User } from './models/user';
+import { RecipeNotifiedComponent } from './recipe-notified/recipe-notified.component';
+import { ReportsService } from './services/reports.service';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { User } from './models/user';
     MyAccountComponent,
     CreateRecipeComponent,
     RecipeComponent,
-    ReportComponent
+    ReportComponent,
+    RecipeNotifiedComponent
+
   ],
   imports: [
     BrowserModule,
@@ -53,10 +57,11 @@ import { User } from './models/user';
       { path: 'my-recipes', component: MyRecipesComponent },
       { path: 'my-account', component: MyAccountComponent },
       { path: 'create-recipe', component: CreateRecipeComponent },
-      { path: 'report', component: ReportComponent }
+      { path: 'report', component: ReportComponent },
+      { path: 'recip-notified', component: RecipeNotifiedComponent }
     ])
   ],
-  providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe],
+  providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe,ReportsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
