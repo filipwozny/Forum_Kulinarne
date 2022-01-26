@@ -27,6 +27,9 @@ export class RecipeService {
     private recipeCategoryURL = 'http://localhost:64231/api/kategorie_przepisow';
     private reviewURL = 'http://localhost:64231/api/recenzje' ;
 
+    private reportedRecipeURL = 'http://localhost:64231/api/zgloszone_przepisy' ;
+    private reportedReviewURL = 'http://localhost:64231/api/zgloszone_recenzje' ;
+
     public categories: Array<Category> = [];
 
     public simpleRecipes: Array<recipeSimple> = [];
@@ -45,7 +48,7 @@ export class RecipeService {
         this.getSimpleRecipes();
         this.currentRecipe = this.simpleRecipes[0];
         this.userRecipes = this.getUserRecipes();
-        this.reportForm = new Report("","",0,"");
+        this.reportForm = new Report("","",0,"", new Date());
         this.getCategories();
         this.getUnits();
         this.getIngredientsName();
@@ -224,5 +227,22 @@ export class RecipeService {
 
     setReportType(type: string) {
         this.reportForm.reportType = type;
+    }
+
+    postRecipeReport() {
+        let report = {'opis':this.reportForm.opis, 'przepis_id_przepisu':this.reportForm.id};
+        
+        this.http.post(this.reportedRecipeURL, report).subscribe( rest => {
+            console.log(rest);
+            this.router.navigate(['/recipe']);
+        })
+    }
+
+    postReviewReport() {
+        let report = {'opis':this.reportForm.opis, 'recenzje_id_recenzji':this.reportForm.id};
+        this.http.post(this.reportedReviewURL, report).subscribe( rest => {
+            console.log(rest);
+            this.router.navigate(['/recipe']);
+        })
     }
 }

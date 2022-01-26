@@ -70,7 +70,32 @@ export class RecipeComponent {
     }
 
     reportRecipe() {
+        this.recipeService.reportForm.reportType = "Przepis";
+
+        this.recipeService.reportForm.id = this.recipeService.currentRecipe.id_przepisu;
+        this.recipeService.reportForm.autor = this.recipeService.currentRecipe.autor;
+        this.recipeService.reportForm.data = this.recipeService.currentRecipe.data_dodania;
+        this.recipeService.reportForm.nazwa = this.recipeService.currentRecipe.nazwa;
         this.router.navigate(['/report']);
     }
 
+    reportReview(id_recenzji: number, autor: string, ocena: number, data_dodania: Date) {
+        this.recipeService.reportForm.reportType = "Recenzja";
+
+        this.recipeService.reportForm.id = id_recenzji;
+        this.recipeService.reportForm.autor = autor;
+        this.recipeService.reportForm.data = data_dodania;
+        this.recipeService.reportForm.ocena = ocena;
+        this.router.navigate(['/report']);
+    }
+
+    hideRecipe() {
+
+        this.router.navigate(['/']);
+    }
+
+    hideReview(id: number) {
+
+        this.router.navigate(['/']);
+    }
 }
