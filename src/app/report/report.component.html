@@ -1,1 +1,15 @@
-<h1>REPORT SITE</h1>
+<div class="div-report">
+    <div class="div-left"> 
+        <p>Przyczyna zgłoszenia </p>
+        <textarea maxlength=255 [(ngModel)]="reportText"></textarea>
+        <button (click)="submitReport()">Wyślij zgłoszenie</button>
+    </div>
+    <div class="div-right"> 
+        <p>Zgłaszany obiekt </p>
+        <p>Typ: {{getReportType()}}</p>
+        <p>Autor: {{getAuthor()}}</p>
+        <p *ngIf="getReportType() == 'Przepis'">Nazwa: {{getName()}}</p>
+        <p *ngIf="getReportType() == 'Recenzja'">Ocena: {{getRating()}}</p>
+        <p>Data publikacji: {{getDate()}}</p>
+    </div>
+</div>

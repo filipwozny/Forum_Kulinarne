@@ -42,7 +42,7 @@
             <a class="nav-link text-dark" [routerLink]="['/']" (click)="userService.logout()">Wyloguj</a>
           </li>
           <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
-            <a class="nav-link text-dark" >Użytkownik:{{userService.user.nazwa_uzytkownika}}</a>
+            <p class="nav-link text-light" >Witaj, {{userService.user.nazwa_uzytkownika}}</p>
           </li>
         </ul>
       </div>

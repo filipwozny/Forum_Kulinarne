@@ -1,7 +1,8 @@
 <div class="div-block">
     <img class="recipe-img" [src]="this.recipeService.photoURL+this.recipeService.currentRecipe.photoName">
     <div class="recipe-text">
-        <p class="report-recipe" (click)="reportRecipe()">Zgłoś przepis</p>
+        <p class="report-recipe" *ngIf="this.userService.user.czy_admin == 0" (click)="reportRecipe()">Zgłoś przepis</p>
+        <p class="report-recipe" *ngIf="this.userService.user.czy_admin == 1" (click)="hideRecipe()">Ukryj</p>
         <div>
             <h2>{{getRecipeName()}}</h2>
             <h4>
@@ -43,7 +44,6 @@
 </div>
 
 
-
 <div class="div-review">
     <h2 style="margin-left: 2vw; padding-top: 1vw;">Dodaj recenzje:</h2>
     <div style="display: flex; min-height: 10vw;">
@@ -52,32 +52,30 @@
         <button class="button-review" [disabled]="inputComment === ''" (click)="postReview()">Dodaj</button>
     </div>
 </div>
-<div style="float: left; clear: both;">
-    <ul *ngFor="let item of this.recipeService.currentReviews" style="background-color: #515151;">
-        <li>Autor recenzji : {{item.uzytkownik_nazwa_uzytkownika}}</li>
-        <li>Ocena : {{item.ocena}} <svg xmlns="http://www.w3.org/2000/svg" width="5%" heigth="auto" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-        </svg></li>
-        <li>Komentarz : {{item.komentarz}} </li>
-    </ul>
-</div>
+
+<div class="div-begin-rev"> Recenzje użytkowników:</div>
 
 <div *ngFor="let item of this.recipeService.currentReviews" class="review-div" >
-
-
-
-
     <div class="autor">
-      Autor recenzji : {{item.uzytkownik_nazwa_uzytkownika}}
+      {{item.uzytkownik_nazwa_uzytkownika}}
     </div>
 
     <div class="ocena">
-      Ocena : {{item.ocena}} <svg xmlns="http://www.w3.org/2000/svg" width="5%" heigth="auto" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-    </svg>
+        {{item.ocena}} <svg xmlns="http://www.w3.org/2000/svg" width="5%" heigth="auto" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+        </svg>
     </div>
 
-  <div class="komentarz">
-    Komentarz: {{item.komentarz}}
-  </div>
+    <div class="data">
+        {{transformDate(item.data_dodania)}}
+    </div>
+
+    <div>
+        <p class="report-review" *ngIf="this.userService.user.czy_admin == 0" (click)="reportReview(item.id_recenzji, item.uzytkownik_nazwa_uzytkownika, item.ocena, item.data_dodania)">Zgłoś recenzje</p>
+        <p class="report-review" *ngIf="this.userService.user.czy_admin == 1" (click)="hideReview(item.id_recenzji)">Ukryj</p>
+    </div>
+
+    <div class="komentarz">
+        {{item.komentarz}}
+    </div>
 </div>
