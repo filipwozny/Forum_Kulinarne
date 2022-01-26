@@ -2,6 +2,9 @@
     <h2>Kategorie: </h2>
     <ul>
 
+      <li class="li-category">
+        <p class="category-text" (click)="selectFilter('Wszystkie')" [ngStyle]="{'color': 'Wszystkie'==this.filter? 'cyan' : 'white'}">Wszystkie</p>
+      </li>
         <li class="li-category" *ngFor="let item of recipeService.categories; let i = index">
             <p class="category-text" (click)="selectFilter(item.nazwa)" [ngStyle]="{'color': item.nazwa==this.filter? 'cyan' : 'white'}">{{item.nazwa}}</p>
         </li>
@@ -10,7 +13,7 @@
 
 <div class="div-recipe">
     <ul>
-        <li *ngFor="let item of recipeService.simpleRecipes; let i = index">
+        <li *ngFor="let item of recipeService.currentdisplayRecipes; let i = index">
             <img class="img-recipe" [src]="this.recipeService.photoURL+item.photoName | safe" (click)="goRecipeSite(i)">
             <p class="recipe-text">{{item.nazwa}}</p>
             <p class="recipe-rating">{{item.srednia_recenzji}}  <svg xmlns="http://www.w3.org/2000/svg" width="25%" height="25%" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

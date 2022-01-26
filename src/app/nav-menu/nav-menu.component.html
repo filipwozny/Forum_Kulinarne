@@ -2,7 +2,7 @@
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
-  <div class="header">   
+  <div class="header">
     <img src="./assets/logo.gif" (click)="goHomeSite()"/>
     <a>Przepisy na każdą porę dnia!</a>
   </div>
@@ -40,6 +40,9 @@
           </li>
           <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
             <a class="nav-link text-dark" [routerLink]="['/']" (click)="userService.logout()">Wyloguj</a>
+          </li>
+          <li class="nav-item" style="float:right" *ngIf="userService.czy_zalogowany === true">
+            <a class="nav-link text-dark" >Użytkownik:{{userService.user.nazwa_uzytkownika}}</a>
           </li>
         </ul>
       </div>

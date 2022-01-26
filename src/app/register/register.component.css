@@ -10,6 +10,28 @@
     border-radius: 40px 40px 40px 40px;
 }
 
+.div-info {
+  position: relative;
+  width: 50%;
+  min-height: 20vw;
+  margin-top: 1vw;
+  margin-left: 25%;
+  padding: auto;
+  background-color: rgb(51, 51, 51);
+  color: white;
+  font-size: 150%;
+  border-radius: 40px 40px 40px 40px;
+}
+
+H1.blocktext {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
 label {
     margin: auto;
     padding-top: 2vw;
