@@ -16,16 +16,17 @@ import { Router } from '@angular/router';
 
 export class HomeComponent {
 
-  public filter: string | undefined;
+  public filter: string = 'Wszystkie';
 
   constructor (public userService: UserService, public recipeService: RecipeService, private router: Router) {
+    //this.recipeService.getcurrentdisplaySimpleRecipes('Wszytkie');
   }
 
   ngOnInit() {
   }
 
   goRecipeSite(recipeIndex: number) {
-    this.recipeService.currentRecipe = this.recipeService.simpleRecipes[recipeIndex];
+    this.recipeService.currentRecipe = this.recipeService.currentdisplayRecipes[recipeIndex];
     this.recipeService.getCurrentRecipeActions();
     this.recipeService.getCurrentRecipeIngerdients();
     localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
@@ -35,11 +36,13 @@ export class HomeComponent {
   selectFilter(categoryName: string) {
     if (this.filter != categoryName) {
       this.filter = categoryName;
+      this.recipeService.getcurrentdisplaySimpleRecipes(this.filter);
     }
     else {
-      this.filter = undefined;
+      this.filter = 'Wszystkie';
+      this.recipeService.getcurrentdisplaySimpleRecipes(this.filter);
     }
-    console.log(this.filter)
+
   }
 
 }

@@ -24,8 +24,8 @@ export class RecipeComponent {
         this.recipeService.getCurrentRecipeActions();
         this.recipeService.getCurrentRecipeIngerdients();
         this.recipeService.getcurrentReviews();
-        console.log(recipeService.currentReviews);
-        console.log(recipeService.AllReviews);
+        //console.log(recipeService.currentReviews);
+        //console.log(recipeService.AllReviews);
     }
 
     ngOnInit() {

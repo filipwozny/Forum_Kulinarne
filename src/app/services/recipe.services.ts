@@ -29,6 +29,7 @@ export class RecipeService {
     public categories: Array<Category> = [];
 
     public simpleRecipes: Array<recipeSimple> = [];
+    public currentdisplayRecipes: Array<recipeSimple> = [];
     public currentRecipe: recipeSimple;
     public userRecipes: Array<recipeSimple> = [];
     public units: Array<Unit> = [];
@@ -46,6 +47,7 @@ export class RecipeService {
         this.getUnits();
         this.getIngredientsName();
         this.getAllReviews();
+        this.currentdisplayRecipes = this.simpleRecipes;
 
     }
 
@@ -65,6 +67,22 @@ export class RecipeService {
                 this.simpleRecipes.push(temp);
             }
          });
+    }
+
+    getcurrentdisplaySimpleRecipes(category: string) {
+        if(category == 'Wszystkie'){
+            this.currentdisplayRecipes = this.simpleRecipes;
+        }
+        else{
+          this.currentdisplayRecipes = [];
+        this.http.get<Array<recipeSimple>>(`${this.recipeCategoryURL}?id=${category}`).subscribe( rest => {
+            for(let i = 0; i < rest.length; i++) {
+                let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName, rest[i].opis, rest[i].data_dodania)
+                this.currentdisplayRecipes.push(temp);
+                console.log(rest[i]);
+            }
+         });
+        }
     }
 
     getcurrentReviews(){
