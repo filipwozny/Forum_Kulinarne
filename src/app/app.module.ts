@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ReportComponent } from './report/report.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 
 import { UserService } from './services/user.services';
@@ -36,7 +37,8 @@ import { User } from './models/user';
     MyRecipesComponent,
     MyAccountComponent,
     CreateRecipeComponent,
-    RecipeComponent
+    RecipeComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { User } from './models/user';
       { path: 'recipe', component: RecipeComponent },
       { path: 'my-recipes', component: MyRecipesComponent },
       { path: 'my-account', component: MyAccountComponent },
-      { path: 'create-recipe', component: CreateRecipeComponent }
+      { path: 'create-recipe', component: CreateRecipeComponent },
+      { path: 'report', component: ReportComponent }
     ])
   ],
   providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe],

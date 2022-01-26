@@ -16,7 +16,6 @@
   <div>
     <label>
       Imię: <input id="imie" type="text" placeholder="Imię"
-      onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
       [(ngModel)]="imie" required />
     </label>
   </div>
@@ -24,7 +23,6 @@
   <div>
     <label>
       Nazwisko: <input id="nazwisko" type="text" placeholder="Nazwisko"
-      onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
       [(ngModel)]="nazwisko" required/>
     </label>
   </div>

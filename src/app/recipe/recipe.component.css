@@ -125,3 +125,65 @@ a {
   float:left;
 
 }
+
+textarea {
+    border-radius: 10px 10px 10px 10px;
+    width: 75%;
+    font-family: 'Atma', sans-serif;
+    font-size: 40px;
+    margin-bottom: 1vw;
+    margin-left: 2vw;
+    resize: vertical; 
+    min-height: 50px;
+    height: fit-content;
+}
+
+.div-review {
+    padding-top: 1vw;
+    border-radius: 0px 40px 0px 40px;
+    background-color:   rgb(51, 51, 51);
+    float: left;
+    margin: 50;
+    margin-top: 25px;
+    padding: 0;
+    height: auto;
+    width: 100%;
+    display: block;
+    color: white;
+}
+
+.input-review {
+    font-family: 'Atma', sans-serif;
+    font-size: 40px;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+    height: 4vw;
+    width: 8vw;
+    text-align: center; 
+}
+
+
+.button-review {
+    font-family: 'Atma', sans-serif;
+    font-size: 40px;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+    height: 4.5vw;
+    width: 8vw;
+}
+
+.report-recipe {
+    position: absolute;
+    font-size: 20px;
+    margin-left: 48%;
+    margin-top: 1vw;
+}
+
+.report-recipe:hover {
+    color: red;
+    cursor: pointer;
+}

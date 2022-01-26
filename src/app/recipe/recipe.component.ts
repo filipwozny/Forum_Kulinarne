@@ -18,6 +18,9 @@ import { CommonModule } from '@angular/common';
 
 export class RecipeComponent {
 
+    public inputComment: string = "";
+    public inputRating: number = 5;
+
 
     constructor (public userService: UserService, private router: Router, public recipeService: RecipeService, private datePipe: DatePipe) {
         this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
@@ -61,6 +64,12 @@ export class RecipeComponent {
         return this.recipeService.currentRecipeActions;
     }
 
+    postReview() {
+        this.recipeService.postReview(this.inputComment, this.inputRating);
+    }
 
+    reportRecipe() {
+        this.router.navigate(['/report']);
+    }
 
 }
