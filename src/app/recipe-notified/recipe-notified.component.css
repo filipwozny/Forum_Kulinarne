@@ -1,0 +1,96 @@
+.div-title {
+  margin-top: 1vw;
+  padding: 0;
+  background-color: #333;
+  border-radius: 10px;
+  display: block;
+  color: white;
+  font-size: 2vw;
+  width: 12vw;
+  padding-left: 1vw;
+  padding-top: 0.5vw;
+}
+
+
+ul {
+  list-style-type: none;
+  margin-top: 1vw;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  border-radius: 10px;
+}
+
+li {
+  float: left;
+  height: 4vw;
+  width: 100%;
+}
+
+li a {
+  float: left;
+  display: block;
+  color: white;
+  font-size: 2vw;
+  text-align: center;
+  height: 90%;
+  padding-left: 1vw;
+  padding-top: 0.5vw;
+  text-decoration: none;
+}
+
+button {
+  border-radius: 10px 10px 10px 10px;
+  height: 90%;
+  min-width: 5%;
+  float: right;
+  display: block;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  margin-bottom: 0.2vw;
+  margin-top: 0.2vw;
+  cursor: pointer;
+  font-family: 'Atma', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5vw;
+
+}
+
+.nieropatrzone {
+  background-color: rgb(180, 0, 0);
+  border-radius: 10px 10px 10px 10px;
+  height: 90%;
+  min-width: 5%;
+  float: right;
+  display: block;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  margin-bottom: 0.2vw;
+  margin-top: 0.2vw;
+  cursor: pointer;
+  font-family: 'Atma', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5vw;
+
+}
+
+.rozpatrzone {
+  background-color: rgb(0, 180, 39);
+  border-radius: 10px 10px 10px 10px;
+  height: 90%;
+  min-width: 5%;
+  float: right;
+  display: block;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  margin-bottom: 0.2vw;
+  margin-top: 0.2vw;
+  cursor: pointer;
+  font-family: 'Atma', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5vw;
+
+}

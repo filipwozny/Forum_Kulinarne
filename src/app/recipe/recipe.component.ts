@@ -66,6 +66,7 @@ export class RecipeComponent {
 
     postReview() {
         this.recipeService.postReview(this.inputComment, this.inputRating);
+        this.recipeService.update();
     }
 
     reportRecipe() {
