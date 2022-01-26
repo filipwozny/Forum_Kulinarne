@@ -23,10 +23,14 @@ export class RecipeComponent {
         this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
         this.recipeService.getCurrentRecipeActions();
         this.recipeService.getCurrentRecipeIngerdients();
+        this.recipeService.getcurrentReviews();
+        console.log(recipeService.currentReviews);
+        console.log(recipeService.AllReviews);
     }
 
     ngOnInit() {
         console.log(this.recipeService.currentRecipe.id_przepisu)
+
     }
 
     getRecipeName() {
@@ -56,5 +60,7 @@ export class RecipeComponent {
     getRecipeActions() {
         return this.recipeService.currentRecipeActions;
     }
+
+
 
 }

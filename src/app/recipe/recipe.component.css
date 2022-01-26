@@ -81,9 +81,25 @@ a {
 .czynnosci::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Hide scrollbar for IE, Edge and Firefox */
 .czynnosci {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+
+.info-div{
+  padding-top: 1vw;
+  border-radius: 0px 40px 0px 40px;
+  background-color:   rgb(51, 51, 51);
+  margin: 0;
+  margin-top: 2.5px;
+  padding: 0;
+  min-height: 2.5vw;
+  height: auto;
+  width: 100%;
+  display: flex;
+  color: white;
+  text-align: center;
+
+}

@@ -4,6 +4,8 @@
     height: auto;
     margin-top: 1vw;
     margin-bottom: 1vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .div-filters {
@@ -16,23 +18,27 @@
     width: 25%;
     height: auto;
     color: white;
+    overflow: auto;
+
 }
 
 .img-recipe {
     border-radius: 30px 30px 30px 30px;
     cursor: pointer;
     object-fit:cover;
-    width: 100%; 
+    width: 100%;
     max-height: 80%;
     height: auto;
     margin: auto;
     padding: auto;
+
+
 }
 
 .recipe-text {
     float: left;
-    width:80%; 
-    max-height: 25%; 
+    width:80%;
+    max-height: 25%;
     width: fit-content;
     margin: auto;
     padding: auto;
@@ -83,7 +89,7 @@ li {
     display: block;
     background-color: transparent;
 }
-  
+
 
 p {
     font-size: 2vw;
@@ -102,8 +108,8 @@ h2 {
 
 .category-text {
     float: left;
-    width:80%; 
-    max-height: 25%; 
+    width:80%;
+    max-height: 25%;
     width: fit-content;
     margin: auto;
     padding: auto;

@@ -10,6 +10,7 @@ import { Ingredient } from 'app/models/ingredient';
 import { SimpleIngredient } from 'app/models/ingredient-simple';
 import { RecipeCategory } from 'app/models/recipe-category';
 import { Router } from '@angular/router';
+import { Review } from 'app/models/review';
 
 
 
@@ -23,6 +24,7 @@ export class RecipeService {
     private ingredientURL = 'http://localhost:64231/api/ilosci';
     private ingredientNameURL = 'http://localhost:64231/api/skladniki';
     private recipeCategoryURL = 'http://localhost:64231/api/kategorie_przepisow';
+    private reviewURL = 'http://localhost:64231/api/recenzje' ;
 
     public categories: Array<Category> = [];
 
@@ -33,6 +35,8 @@ export class RecipeService {
     public ingredientsName: Array<SimpleIngredient> = [];
     public currentRecipeActions: Array<Action> = [];
     public currentRecipeIngredients: Array<Ingredient> = [];
+    public AllReviews: Array<Review> = [];
+    public currentReviews: Array<Review> = [];
 
     constructor(private http: HttpClient, private userService: UserService, private router: Router) {
         this.getSimpleRecipes();
@@ -41,6 +45,8 @@ export class RecipeService {
         this.getCategories();
         this.getUnits();
         this.getIngredientsName();
+        this.getAllReviews();
+
     }
 
     update() {
@@ -61,6 +67,12 @@ export class RecipeService {
          });
     }
 
+    getcurrentReviews(){
+      this.http.get<Array<Review>>(`${this.reviewURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => {
+        this.currentReviews = rest;
+    });
+    }
+
     getUserRecipes() {
         return this.simpleRecipes.filter(x => x.autor === this.userService.user.nazwa_uzytkownika);
     }
@@ -74,6 +86,14 @@ export class RecipeService {
             let sorted = rest.sort((a, b) => (a.nazwa > b.nazwa) ? 1 : -1);
             this.categories = sorted; });
     }
+
+    getAllReviews() {
+      this.http.get<Array<Review>>(`${this.reviewURL}`).subscribe( rest => {
+        for(let i = 0; i < rest.length; i++) {
+          let temp = new Review(rest[i].id_recenzji, rest[i].przepis_id_przepisu, rest[i].uzytkownik_nazwa_uzytkownika, rest[i].ocena, rest[i].widocznosc, rest[i].data_dodania, rest[i].komentarz)
+          this.AllReviews.push(temp);
+      } });
+  }
 
     upload(file: any) {
         // Create form data
