@@ -91,11 +91,11 @@ export class RecipeComponent {
 
     hideRecipe() {
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/recip-notified']);
     }
 
     hideReview(id: number) {
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/recip-notified']);
     }
 }

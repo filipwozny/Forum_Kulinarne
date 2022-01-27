@@ -16,7 +16,13 @@ export class RecipeNotifiedComponent implements OnInit {
   public reportedRecipe: recipeSimple | undefined;
 
 
-  constructor(public userService: UserService, private router: Router, public reportsService: ReportsService, public recipeService: RecipeService) { }
+  constructor(public userService: UserService, private router: Router, public reportsService: ReportsService, public recipeService: RecipeService) {
+    this.recipeService.currentRecipe = JSON.parse(localStorage.getItem('currentRecipe') || '{}');
+    this.recipeService.getCurrentRecipeActions();
+    this.recipeService.getCurrentRecipeIngerdients();
+    this.recipeService.getcurrentReviews();
+
+  }
 
   ngOnInit(): void {
   }
@@ -28,11 +34,13 @@ export class RecipeNotifiedComponent implements OnInit {
   }
 
   goRecipeSite(recipeIndex: number) {
-    this.recipeService.currentRecipe = this.recipeService.currentdisplayRecipes[recipeIndex];
+    console.log(recipeIndex);
+    this.recipeService.currentRecipe = this.recipeService.simpleRecipes[this.recipeService.simpleRecipes.findIndex(x => x.id_przepisu == recipeIndex )];
     this.recipeService.getCurrentRecipeActions();
     this.recipeService.getCurrentRecipeIngerdients();
     localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
     this.router.navigate(['/recipe']);
+    console.log(recipeIndex);
   }
 
 

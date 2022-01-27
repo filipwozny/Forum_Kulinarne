@@ -1,16 +1,16 @@
 <div class="div-title">
   <a>
-      Zgłoszone przepisy:
+      Zgłoszone recenzje:
   </a>
 </div>
 <div class="container">
-  <div *ngFor="let item of this.reportsService.allReport" class="div-block">
+  <div *ngFor="let item of this.reportsService.allrevieReport" class="div-block">
     <ul>
       <li>
           <a>{{item.opis}}</a>
         </li>
         <li>
-          <button class="button" (click)="goRecipeSite(item.przepis_id_przepisu)">Zgłoszony przepis</button>
+          <button class="button"  (click)='getrecipeID(item.id_zgloszenia)'>Zgłoszony przepis</button>
           <button *ngIf="item.status_zgloszenia == 'Nierozpatrzone'" class="nieropatrzone">{{item.status_zgloszenia}}</button>
           <button *ngIf="item.status_zgloszenia == 'Rozpatrzone'" class="rozpatrzone">{{item.status_zgloszenia}}</button>
           <button class="button" (click)='ZmienStatus(item.id_zgloszenia , item.status_zgloszenia)'>Zmien Status</button>
