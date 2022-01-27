@@ -24,7 +24,8 @@ export class MyRecipesComponent {
     }
 
     deleteRecipe(id_przepisu: number) {
-        console.log(id_przepisu)
+        this.recipeService.hideRecipe(id_przepisu, false);
+        window.location.reload();
     }
 
 }

@@ -45,6 +45,7 @@ import { ReviewNotifiedComponent } from './review-notified/review-notified.compo
     RecipeNotifiedComponent,
     ReviewNotifiedComponent
 
+
   ],
   imports: [
     BrowserModule,

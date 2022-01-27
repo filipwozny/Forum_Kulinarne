@@ -5,11 +5,10 @@
 </div>
 <div class="container">
     <div *ngFor="let item of this.recipeService.getUserRecipes()">
-      <ul>
+      <ul *ngIf="item.widocznosc">
         <li>
             <a>{{item.nazwa}}</a>
             <button class="button-delete" (click)="deleteRecipe(item.id_przepisu)">Usuń</button>
-            <button class="button-edit">Edytuj</button>
         </li>
       </ul>
     </div>
