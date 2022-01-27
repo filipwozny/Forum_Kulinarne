@@ -90,6 +90,14 @@ export class RecipeComponent {
     }
 
     hideRecipe() {
+
+        this.router.navigate(['/recip-notified']);
+    }
+
+    hideReview(id: number) {
+
+        this.router.navigate(['/recip-notified']);
+
         this.recipeService.hideRecipe(this.recipeService.currentRecipe.id_przepisu, false);
         this.router.navigate(['/']);
     }
@@ -97,5 +105,6 @@ export class RecipeComponent {
     hideReview(id: number) {
         this.recipeService.hideReview(id, false);
         window.location.reload();
+
     }
 }

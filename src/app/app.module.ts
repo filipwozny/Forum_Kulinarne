@@ -26,6 +26,7 @@ import { RecipeService } from './services/recipe.services';
 import { User } from './models/user';
 import { RecipeNotifiedComponent } from './recipe-notified/recipe-notified.component';
 import { ReportsService } from './services/reports.service';
+import { ReviewNotifiedComponent } from './review-notified/review-notified.component';
 
 
 @NgModule({
@@ -42,6 +43,8 @@ import { ReportsService } from './services/reports.service';
     RecipeComponent,
     ReportComponent,
     RecipeNotifiedComponent,
+    ReviewNotifiedComponent
+
 
   ],
   imports: [
@@ -58,7 +61,8 @@ import { ReportsService } from './services/reports.service';
       { path: 'my-account', component: MyAccountComponent },
       { path: 'create-recipe', component: CreateRecipeComponent },
       { path: 'report', component: ReportComponent },
-      { path: 'recip-notified', component: RecipeNotifiedComponent }
+      { path: 'recip-notified', component: RecipeNotifiedComponent },
+      { path: 'review-notified', component: ReviewNotifiedComponent }
     ])
   ],
   providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe,ReportsService],
