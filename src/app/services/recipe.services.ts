@@ -53,9 +53,6 @@ export class RecipeService {
         this.getUnits();
         this.getIngredientsName();
         this.getAllReviews();
-        this.currentdisplayRecipes = this.simpleRecipes;
-
-
     }
 
     update() {
@@ -73,19 +70,27 @@ export class RecipeService {
                 let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName, rest[i].opis, rest[i].data_dodania)
                 this.simpleRecipes.push(temp);
             }
+            this.getcurrentdisplaySimpleRecipes("Wszystkie");
          });
     }
 
     getcurrentdisplaySimpleRecipes(category: string) {
+        this.currentdisplayRecipes = [];
         if(category == 'Wszystkie'){
-            this.currentdisplayRecipes = this.simpleRecipes;
+            for(let i = 0; i < this.simpleRecipes.length; i++) {
+                console.log(this.simpleRecipes[i].widocznosc);
+                if(this.simpleRecipes[i].widocznosc) {
+                    this.currentdisplayRecipes.push(this.simpleRecipes[i]);
+                }
+            }
         }
         else{
-          this.currentdisplayRecipes = [];
         this.http.get<Array<recipeSimple>>(`${this.recipeCategoryURL}?id=${category}`).subscribe( rest => {
             for(let i = 0; i < rest.length; i++) {
                 let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName, rest[i].opis, rest[i].data_dodania)
-                this.currentdisplayRecipes.push(temp);
+                if(temp.widocznosc) {
+                    this.currentdisplayRecipes.push(temp);
+                }
                 console.log(rest[i]);
             }
          });
@@ -244,5 +249,16 @@ export class RecipeService {
             console.log(rest);
             this.router.navigate(['/recipe']);
         })
+    }
+
+    hideReview(id: number, hide: boolean) {
+        let order = {'widzocnosc':hide, 'id_recenzji':id};
+        this.http.put(this.reviewURL, order).subscribe(rest => {});
+    }
+
+    hideRecipe(id: number, hide: boolean) {
+        let order = {'widzocnosc':hide, 'id_przepisu':id};
+
+        this.http.put(this.recipeURL, order).subscribe(rest => {});
     }
 }

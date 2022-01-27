@@ -41,7 +41,7 @@ import { ReportsService } from './services/reports.service';
     CreateRecipeComponent,
     RecipeComponent,
     ReportComponent,
-    RecipeNotifiedComponent
+    RecipeNotifiedComponent,
 
   ],
   imports: [

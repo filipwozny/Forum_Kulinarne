@@ -90,12 +90,12 @@ export class RecipeComponent {
     }
 
     hideRecipe() {
-
+        this.recipeService.hideRecipe(this.recipeService.currentRecipe.id_przepisu, false);
         this.router.navigate(['/']);
     }
 
     hideReview(id: number) {
-
-        this.router.navigate(['/']);
+        this.recipeService.hideReview(id, false);
+        window.location.reload();
     }
 }
