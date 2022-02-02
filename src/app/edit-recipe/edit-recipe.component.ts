@@ -14,10 +14,10 @@ class ImageSnippet {
 
 @Component({
   selector: 'app-create-recipe',
-  templateUrl: './create-recipe.component.html',
-  styleUrls: ['./create-recipe.component.css']
+  templateUrl: './edit-recipe.component.html',
+  styleUrls: ['./edit-recipe.component.css']
 })
-export class CreateRecipeComponent {
+export class EditRecipeComponent {
 
     selectedFile: ImageSnippet | any;
     imageInput: any;
@@ -34,14 +34,30 @@ export class CreateRecipeComponent {
     public quantity: number = 0;
     public chosenUnit: string | null = null;
 
+    public changedPhoto: boolean = false;
+    public changedActions: boolean = false;
+    public changedIngredients: boolean = false;
+    public changedCategories: boolean = false;
+
 
 
     constructor(public recipeService: RecipeService, private router: Router){
-        this.url = '/assets/default.png';
-        this.newRecipeActions = [];
-        this.newRecipeIngredients = [];
+        this.recipeName = this.recipeService.currentRecipe.nazwa;
+        this.description = this.recipeService.currentRecipe.opis;
+        this.categoryArray = this.recipeService.currentRecipeCategories;
+        this.url = this.recipeService.photoURL;
+        this.fileName = this.recipeService.currentRecipe.photoName;
+        this.newRecipeActions = this.getRecipeActions();
+        this.newRecipeIngredients = this.getRecipeIngredients();
     }
 
+    getRecipeActions() {
+        return this.recipeService.currentRecipeActions;
+    }
+
+    getRecipeIngredients() {
+        return this.recipeService.currentRecipeIngredients;
+    }
 
     processFile(imageInput: any) {
         this.imageInput = imageInput;
@@ -57,6 +73,11 @@ export class CreateRecipeComponent {
 			this.url = reader.result; 
             this.fileName = file.name;
 		}
+        this.changedPhoto = true;
+    }
+
+    changeCategories() {
+        this.changedCategories = true;
     }
 
     addAction() {
@@ -64,6 +85,7 @@ export class CreateRecipeComponent {
             let action = new Action((this.newRecipeActions.length+1), this.textArea);
             this.newRecipeActions.push(action);
             this.textArea = "";
+            this.changedActions = true;
         }     
     }
 
@@ -72,6 +94,7 @@ export class CreateRecipeComponent {
         for(let i = numer; i < this.newRecipeActions.length; i++) {
             this.newRecipeActions[i].kolejnosc_w_przepisie = i+1;
         }
+        this.changedActions = true;
     }
 
     addIngredients() {
@@ -81,24 +104,29 @@ export class CreateRecipeComponent {
             this.inputIngredient = "";
             this.quantity = 0;
             this.chosenUnit = null;
+            this.changedIngredients = true;
         }   
     }
 
     deleteIngredients(nazwa: string) {
         var index = this.newRecipeIngredients.findIndex(x => x.skladnik_nazwa === nazwa);
         this.newRecipeIngredients.splice(index,1);
+        this.changedIngredients = true;
     }
 
 
     publish() {
-        this.recipeService.upload(this.selectedFile.file);
-        let recipeNumber = this.recipeService.simpleRecipes.length;
+        if(this.changedPhoto == true) {
+            this.recipeService.upload(this.selectedFile.file);
+        }
+        
         let categoryID: Array<number> = [];
         this.categoryArray.forEach(element => {
             if(element >= 1) {
                 categoryID.push(element)
             }    
         });
-        this.recipeService.postRecipe(this.recipeName, this.description, this.fileName, this.newRecipeActions, this.newRecipeIngredients, categoryID)
+        this.recipeService.postEditRecipe(this.recipeName, this.description, this.fileName, this.newRecipeActions, this.newRecipeIngredients, 
+                        categoryID, this.changedActions, this.changedIngredients, this.changedCategories)
     }
 }

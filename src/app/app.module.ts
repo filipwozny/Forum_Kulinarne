@@ -18,6 +18,7 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ReportComponent } from './report/report.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 import { UserService } from './services/user.services';
 import { RecipeService } from './services/recipe.services';
@@ -43,9 +44,8 @@ import { ReviewNotifiedComponent } from './review-notified/review-notified.compo
     RecipeComponent,
     ReportComponent,
     RecipeNotifiedComponent,
-    ReviewNotifiedComponent
-
-
+    ReviewNotifiedComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +62,8 @@ import { ReviewNotifiedComponent } from './review-notified/review-notified.compo
       { path: 'create-recipe', component: CreateRecipeComponent },
       { path: 'report', component: ReportComponent },
       { path: 'recip-notified', component: RecipeNotifiedComponent },
-      { path: 'review-notified', component: ReviewNotifiedComponent }
+      { path: 'review-notified', component: ReviewNotifiedComponent },
+      { path: 'edit-recipe', component: EditRecipeComponent }
     ])
   ],
   providers: [HttpClientModule,HttpService,UserService,RecipeService,DatePipe,ReportsService],

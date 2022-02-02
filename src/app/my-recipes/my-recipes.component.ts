@@ -28,4 +28,8 @@ export class MyRecipesComponent {
         window.location.reload();
     }
 
+    editRecipe(id_przepisu: number) {
+      this.recipeService.editRecipe(id_przepisu);
+      setTimeout(() => this.router.navigate(['/edit-recipe']), 500)
+    }
 }

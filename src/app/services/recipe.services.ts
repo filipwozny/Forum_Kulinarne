@@ -14,7 +14,6 @@ import { Review } from 'app/models/review';
 import { Report } from 'app/models/report';
 
 
-
 @Injectable()
 export class RecipeService {
     private recipeURL = 'http://localhost:64231/api/przepisy';
@@ -40,9 +39,11 @@ export class RecipeService {
     public ingredientsName: Array<SimpleIngredient> = [];
     public currentRecipeActions: Array<Action> = [];
     public currentRecipeIngredients: Array<Ingredient> = [];
+    public currentRecipeCategories: Array<number> = [];
     public AllReviews: Array<Review> = [];
     public currentReviews: Array<Review> = [];
     public reportForm: Report;
+
 
     constructor(private http: HttpClient, private userService: UserService, private router: Router) {
         this.getSimpleRecipes();
@@ -62,6 +63,13 @@ export class RecipeService {
         this.getCategories();
         this.getUnits();
         this.getIngredientsName();
+    }
+
+    editRecipe(id: number) {
+        this.currentRecipe = this.simpleRecipes[this.simpleRecipes.findIndex(recipe => recipe.id_przepisu == id)];
+        this.getCurrentRecipeActions();
+        this.getCurrentRecipeIngerdients();
+        this.getCategoriesByRecipeID();
     }
 
     getSimpleRecipes() {
@@ -85,7 +93,7 @@ export class RecipeService {
             }
         }
         else{
-        this.http.get<Array<recipeSimple>>(`${this.recipeCategoryURL}?id=${category}`).subscribe( rest => {
+        this.http.get<Array<recipeSimple>>(`${this.recipeCategoryURL}?kategoria=${category}`).subscribe( rest => {
             for(let i = 0; i < rest.length; i++) {
                 let temp = new recipeSimple(rest[i].id_przepisu, rest[i].srednia_recenzji, rest[i].nazwa, rest[i].autor, rest[i].widocznosc, rest[i].photoName, rest[i].opis, rest[i].data_dodania)
                 if(temp.widocznosc) {
@@ -114,7 +122,18 @@ export class RecipeService {
     getCategories() {
         this.http.get<Array<Category>>(`${this.categoryURL}`).subscribe( rest => {
             let sorted = rest.sort((a, b) => (a.nazwa > b.nazwa) ? 1 : -1);
-            this.categories = sorted; });
+            this.categories = sorted;
+        });
+    }
+
+    getCategoriesByRecipeID() {
+        this.currentRecipeCategories = [];
+        this.http.get<Array<any>>(`${this.recipeCategoryURL}?przepis_id=${this.currentRecipe.id_przepisu}`).subscribe( rest => {
+            let sorted = rest.sort((a, b) => (a.nazwa > b.nazwa) ? 1 : -1);
+            sorted.forEach(element => {
+                this.currentRecipeCategories.push(element.kategoria_id);
+            });
+        });
     }
 
     getAllReviews() {
@@ -175,8 +194,59 @@ export class RecipeService {
         })
     }
 
+    postEditRecipe(recipeName: string, description: string, fileName: string, recipeActions: Array<Action>, recipeIngredients: Array<Ingredient>, 
+                        categoryArray: Array<number>, changedActions: boolean, changedIngredients: boolean, changedCategories: boolean) {
+
+        this.currentRecipe.nazwa = recipeName;
+        this.currentRecipe.opis = description;
+        this.currentRecipe.photoName = fileName;
+
+        this.http.put(this.recipeURL, this.currentRecipe).subscribe( rest => {
+            if (rest == "Edytowano przepis") {
+                if (changedActions) {
+                    this.deleteActions(this.currentRecipe.id_przepisu);
+                    recipeActions.forEach(action => {
+                        action.id_przepisu = this.currentRecipe.id_przepisu;
+                        this.postActions(action);
+                    });
+                }
+
+                if (changedIngredients) {
+                    this.deleteIngredients(this.currentRecipe.id_przepisu);
+                    recipeIngredients.forEach(ingredient => {
+                        ingredient.przepis_id = this.currentRecipe.id_przepisu;
+                        if(this.ingredientsName.some(function(element) {return element.nazwa === ingredient.skladnik_nazwa;}))
+                            this.postIngredients(ingredient);
+                        else {
+                            let newIngredientName = new SimpleIngredient(ingredient.skladnik_nazwa);
+                            this.http.post(this.ingredientNameURL, newIngredientName).subscribe( rest => {
+                                this.postIngredients(ingredient);
+                            });
+                        }
+                    });
+                }
+
+                if (changedCategories) {
+                    this.deleteRecipeCategory(this.currentRecipe.id_przepisu);
+                    categoryArray.forEach(category => {
+                        let recipeCat = new RecipeCategory(this.currentRecipe.id_przepisu, category);
+                        this.postRecipeCategory(recipeCat);
+                    })
+                }
+                   
+                this.postSuccessful();
+                }
+            });
+        }
+
     postActions(action: Action) {
         this.http.post(this.actionURL, action).subscribe( rest => {
+            console.log(rest);
+        })
+    }
+
+    deleteActions(id: number) {
+        this.http.delete(`${this.actionURL}?id=${id}`).subscribe( rest => {
             console.log(rest);
         })
     }
@@ -188,8 +258,20 @@ export class RecipeService {
         })
     }
 
+    deleteIngredients(id: number) {
+        this.http.delete(`${this.ingredientURL}?id=${id}`).subscribe( rest => {
+            console.log(rest);
+        })
+    }
+
     postRecipeCategory(category: RecipeCategory) {
         this.http.post(this.recipeCategoryURL, category).subscribe( rest => {
+            console.log(rest);
+        })
+    }
+
+    deleteRecipeCategory(id: number) {
+        this.http.delete(`${this.recipeCategoryURL}?id=${id}`).subscribe( rest => {
             console.log(rest);
         })
     }
@@ -217,7 +299,6 @@ export class RecipeService {
         this.http.get<Array<Ingredient>>(`${this.ingredientURL}?id=${this.currentRecipe.id_przepisu}`).subscribe( rest => {
             let sorted = rest.sort((a, b) => (a.skladnik_nazwa > b.skladnik_nazwa) ? 1 : -1);
             this.currentRecipeIngredients = sorted;
-            console.log(sorted)
         });
     }
 

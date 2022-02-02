@@ -8,7 +8,8 @@
       <ul *ngIf="item.widocznosc">
         <li>
             <a>{{item.nazwa}}</a>
-            <button class="button-delete" (click)="deleteRecipe(item.id_przepisu)">Usuń</button>
+            <button class="button" (click)="deleteRecipe(item.id_przepisu)">Usuń</button>
+            <button class="button" (click)="editRecipe(item.id_przepisu)">Edytuj</button>
         </li>
       </ul>
     </div>

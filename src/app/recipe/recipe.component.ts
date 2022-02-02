@@ -27,13 +27,6 @@ export class RecipeComponent {
         this.recipeService.getCurrentRecipeActions();
         this.recipeService.getCurrentRecipeIngerdients();
         this.recipeService.getcurrentReviews();
-        //console.log(recipeService.currentReviews);
-        //console.log(recipeService.AllReviews);
-    }
-
-    ngOnInit() {
-        console.log(this.recipeService.currentRecipe.id_przepisu)
-
     }
 
     getRecipeName() {
@@ -92,14 +85,6 @@ export class RecipeComponent {
     hideRecipe() {
 
         this.router.navigate(['/recip-notified']);
-    }
-
-    hideReview(id: number) {
-
-        this.router.navigate(['/recip-notified']);
-
-        this.recipeService.hideRecipe(this.recipeService.currentRecipe.id_przepisu, false);
-        this.router.navigate(['/']);
     }
 
     hideReview(id: number) {
