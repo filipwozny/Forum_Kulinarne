@@ -86,7 +86,6 @@ export class RecipeService {
         this.currentdisplayRecipes = [];
         if(category == 'Wszystkie'){
             for(let i = 0; i < this.simpleRecipes.length; i++) {
-                console.log(this.simpleRecipes[i].widocznosc);
                 if(this.simpleRecipes[i].widocznosc) {
                     this.currentdisplayRecipes.push(this.simpleRecipes[i]);
                 }
@@ -99,10 +98,28 @@ export class RecipeService {
                 if(temp.widocznosc) {
                     this.currentdisplayRecipes.push(temp);
                 }
-                console.log(rest[i]);
             }
          });
         }
+    }
+
+    getCurrentDisplayRecipesByIngredients(ingredientName: string) {
+        this.currentdisplayRecipes = [];
+        this.http.get<Array<any>>(`${this.ingredientURL}?nazwa=${ingredientName}`).subscribe( rest => {
+            rest.forEach(element => {
+                this.currentdisplayRecipes.push(this.simpleRecipes[this.simpleRecipes.findIndex(recipe => recipe.id_przepisu == element.przepis_id)])
+            });
+        });
+    }
+
+    getCurrentDisplayRecipesByName(nameFilter: string) {
+        this.currentdisplayRecipes = [];
+        this.http.get<Array<any>>(`${this.recipeURL}?nazwa=${nameFilter}`).subscribe( rest => {
+            rest.forEach(element => {
+                this.currentdisplayRecipes.push(this.simpleRecipes[this.simpleRecipes.findIndex(recipe => recipe.id_przepisu == element.id_przepisu)])
+            });
+            console.log(this.currentdisplayRecipes)
+        });
     }
 
     getcurrentReviews(){

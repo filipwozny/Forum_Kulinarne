@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 export class HomeComponent {
 
   public filter: string = 'Wszystkie';
+  public ingredientFilter: string = '';
+  public nameFilter: string = '';
 
   constructor (public userService: UserService, public recipeService: RecipeService, private router: Router) {
     //this.recipeService.getcurrentdisplaySimpleRecipes('Wszytkie');
@@ -42,7 +44,13 @@ export class HomeComponent {
       this.filter = 'Wszystkie';
       this.recipeService.getcurrentdisplaySimpleRecipes(this.filter);
     }
-
   }
 
+  selectIngredient(ingredientName: string) {
+    this.recipeService.getCurrentDisplayRecipesByIngredients(ingredientName);
+  }
+
+  selectName(nameFilter: string) {
+    this.recipeService.getCurrentDisplayRecipesByName(nameFilter);
+  }
 }

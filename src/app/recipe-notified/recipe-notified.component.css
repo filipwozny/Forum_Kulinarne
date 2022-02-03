@@ -6,7 +6,7 @@
   display: block;
   color: white;
   font-size: 2vw;
-  width: 12vw;
+  width: 17%;
   padding-left: 1vw;
   padding-top: 0.5vw;
 }
@@ -22,7 +22,7 @@ ul {
 }
 
 li {
-  float: left;
+  float: right;
   height: 4vw;
   width: 100%;
 }

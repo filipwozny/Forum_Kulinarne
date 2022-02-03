@@ -122,3 +122,31 @@ h2 {
     text-decoration: underline;
     cursor: pointer;
 }
+
+select {
+    margin-left: 5%;
+    margin-right: 2%;
+    width: 75%;
+    height: 45px;
+    border-radius: 10px 10px 10px 10px;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    overflow: scroll;
+}
+
+button {
+    border-radius: 10px 10px 10px 10px;
+    height: 48px;
+    width: 48px;
+    margin: auto;
+}
+
+.input-list {
+    border-radius: 10px 10px 10px 10px;
+    width: 73%;
+    font-family: 'Atma', sans-serif;
+    font-size: 150%;
+    margin-left: 5%;
+    margin-right: 2%;
+    height: 40px;
+}
