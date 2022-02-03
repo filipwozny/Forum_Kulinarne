@@ -3,7 +3,6 @@
   padding: 0;
   background-color: #333;
   border-radius: 10px;
-  display: block;
   color: white;
   font-size: 2vw;
   width: 17%;
@@ -23,73 +22,50 @@ ul {
 
 li {
   float: right;
-  height: 4vw;
+  min-height: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   width: 100%;
-}
-
-li a {
-  white-space: initial;
-  word-wrap: initial;
-  float: left;
-  display: block;
-  color: white;
-  font-size: 2vw;
-  text-align: center;
-  height: 90%;
-  padding-left: 1vw;
-  padding-top: 0.5vw;
-  text-decoration: none;
-  width: 60%;
 }
 
 button {
   border-radius: 10px 10px 10px 10px;
-  height: 90%;
-  min-width: 5%;
+  height: auto;
+  width: 30%;
   float: right;
-  display: block;
   margin-left: 0.5vw;
   margin-right: 0.5vw;
-  margin-bottom: 0.2vw;
-  margin-top: 0.2vw;
   cursor: pointer;
   font-family: 'Atma', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: 1.5vw;
-
 }
 
 .nieropatrzone {
   background-color: rgb(180, 0, 0);
   border-radius: 10px 10px 10px 10px;
-  height: 90%;
+  height: 100%;
   min-width: 5%;
-  float: right;
-  display: block;
   margin-left: 0.5vw;
   margin-right: 0.5vw;
-  margin-bottom: 0.2vw;
-  margin-top: 0.2vw;
   cursor: pointer;
   font-family: 'Atma', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: 1.5vw;
-
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .rozpatrzone {
   background-color: rgb(0, 180, 39);
   border-radius: 10px 10px 10px 10px;
-  height: 90%;
+  height: 100%;
   min-width: 5%;
   float: right;
-  display: block;
   margin-left: 0.5vw;
   margin-right: 0.5vw;
-  margin-bottom: 0.2vw;
-  margin-top: 0.2vw;
   cursor: pointer;
   font-family: 'Atma', sans-serif;
   font-weight: bold;
@@ -98,15 +74,27 @@ button {
 
 }
 
-.div-block {
-  padding-top: 1vw;
-  border-radius: 0px 40px 0px 40px;
-  background-color:   rgb(51, 51, 51);
-  margin: 0;
-  margin-top: 25px;
-  padding: 0;
-  height: auto;
-  width: 100%;
-  display: flex;
+
+.div-left-report {
+  float: left;
+  height: 100%;
+  width: 60%;
+}
+
+.div-right-report {
+  float: right;
+  width: 40%;
+  height: 100%;
+  margin-left: 58%;
+  margin-bottom: auto;
+  margin-top: 0px;
+  position: absolute;
+}
+
+li a{
+  font-family: 'Atma', sans-serif;
+  font-size: 30px;
   color: white;
+  padding-left: 20px;
+  display: block;
 }

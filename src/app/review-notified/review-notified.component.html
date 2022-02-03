@@ -4,17 +4,20 @@
   </a>
 </div>
 <div class="container">
-  <div *ngFor="let item of this.reportsService.allrevieReport" class="div-block">
+  <div *ngFor="let item of this.reportsService.allrevieReport">
     <ul>
-      <li>
-        <a>{{item.opis}}</a>
-      </li>
-      <li>
-        <button class="button"  (click)='getrecipeID(item.id_zgloszenia)'>Zgłoszony przepis</button>
-        <button *ngIf="item.status_zgloszenia == 'Nierozpatrzone'" class="nieropatrzone">{{item.status_zgloszenia}}</button>
-        <button *ngIf="item.status_zgloszenia == 'Rozpatrzone'" class="rozpatrzone">{{item.status_zgloszenia}}</button>
-        <button class="button" (click)='ZmienStatus(item.id_zgloszenia , item.status_zgloszenia)'>Zmien Status</button>
-      </li>
+      <div class="div-left-report">
+        <li>
+          <a>{{item.opis}}</a>
+        </li>
+      </div>
+      <div class="div-right-report">
+        <li>
+          <button class="button"  (click)='getrecipeID(item.id_zgloszenia)'>Zgłoszony przepis</button>
+          <button *ngIf="item.status_zgloszenia == 'Nierozpatrzone'" class="nieropatrzone" (click)='ZmienStatus(item.id_zgloszenia , item.status_zgloszenia)'>{{item.status_zgloszenia}}</button>
+          <button *ngIf="item.status_zgloszenia == 'Rozpatrzone'" class="rozpatrzone" (click)='ZmienStatus(item.id_zgloszenia , item.status_zgloszenia)'>{{item.status_zgloszenia}}</button>
+        </li>
+      </div>
     </ul>
   </div>
 </div>
