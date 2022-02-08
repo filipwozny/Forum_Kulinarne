@@ -41,4 +41,9 @@ export class MyAccountComponent {
       this.check = true;
     }
 
+    deleteAccount(){
+      this.userService.deleteUser(this.userService.user.nazwa_uzytkownika);
+      this.router.navigate(['/']);
+    }
+
 }

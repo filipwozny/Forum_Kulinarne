@@ -28,8 +28,8 @@ export class ReviewNotifiedComponent implements OnInit {
   }
 
   getrecipeID(id:number){
-    this.reportsService.getcurretnreecipeID(id);
 
+    this.reportsService.getcurretnreecipeID(id);
   }
 
 

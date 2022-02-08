@@ -29,6 +29,10 @@ export class RecipeComponent {
         this.recipeService.getcurrentReviews();
     }
 
+    getRecipeId(){
+      return (this.recipeService.currentRecipe.id_przepisu)
+    }
+
     getRecipeName() {
         return (this.recipeService.currentRecipe.nazwa)
     }
@@ -82,8 +86,8 @@ export class RecipeComponent {
         this.router.navigate(['/report']);
     }
 
-    hideRecipe() {
-
+    hideRecipe(id: number) {
+        this.recipeService.hideRecipe(id,false);
         this.router.navigate(['/recip-notified']);
     }
 

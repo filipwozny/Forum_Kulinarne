@@ -76,22 +76,22 @@ changestatusreview(id: number, status: string){
     this.tmpstringreview = 'Rozpatrzone';
   }
   console.log(this.tmpreviewReport);
-  this.tmpreviewReport = new ReviewNotified(id , '' , this.tmpstringreview , new Date);
+  this.tmpreviewReport = new ReviewNotified(id , '' , this.tmpstringreview , new Date );
   this.http.put(this.revieweReportsURL, this.tmpreviewReport).subscribe(rest => {console.log(rest)});
   window.location.reload();
 }
 
   getcurretnreecipeID(id:number) {
-    this.http.get<Array<RecipeID>>(`${this.revieweReportsURL}?id=${id}`).subscribe( rest => {
+    return this.http.get<Array<RecipeID>>(`${this.revieweReportsURL}?id=${id}`).subscribe( rest => {
       this.currentRecipeID = rest[0].id_przepisu;
       console.log(this.currentRecipeID);
       this.recipeService.currentRecipe = this.recipeService.simpleRecipes[this.recipeService.simpleRecipes.findIndex(x => x.id_przepisu == this.currentRecipeID )];
       this.recipeService.getCurrentRecipeActions();
       this.recipeService.getCurrentRecipeIngerdients();
-      localStorage.setItem('currentRescipe',JSON.stringify(this.recipeService.currentRecipe));
+      localStorage.setItem('currentRecipe',JSON.stringify(this.recipeService.currentRecipe));
       this.router.navigate(['/recipe']);
-      console.log(this.currentRecipeID);
      });
+
   }
 
 

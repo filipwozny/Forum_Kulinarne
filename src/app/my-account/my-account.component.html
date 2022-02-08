@@ -46,6 +46,10 @@
       <button type="submit" (click)="saveAccount()">Zapisz</button>
     </div>
 
+    <div style="padding-bottom: 3vw;">
+      <button style="background-color: #e20f00; /* Green */" type="submit" (click)="deleteAccount()">Usuń swoje konto</button>
+    </div>
+
     <div class="login-info" *ngIf="check == true">
       Dane zostały zaktualizowane!!!
     </div>

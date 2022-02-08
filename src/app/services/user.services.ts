@@ -69,4 +69,11 @@ export class UserService {
         this.http.put(this.userURL, this.user).subscribe(rest => {console.log(rest)});
     }
 
+    deleteUser(nazwa:string){
+      console.log(nazwa);
+      this.logout();
+      this.http.delete(`${this.userURL}?id=${nazwa}`)
+      .subscribe();
+    }
+
 }
