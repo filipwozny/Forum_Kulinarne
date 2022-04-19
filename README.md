@@ -61,8 +61,19 @@ Wymagania niefunkcjonalne:
 - wyodrębniona strona logowania
 <br /> <br /> <br />
 ### Screenshots
+# Strona główna
+![Strona główna](https://user-images.githubusercontent.com/70282972/164002149-9f443864-458a-4de8-971a-42693daba8d7.png)
+# Panel logowania
+![Panel logowania](https://user-images.githubusercontent.com/70282972/164002145-374d73c7-511b-44ca-b003-69a4a9a5a44b.png)
+# Panel rejestracji
+![Panel rejestracji](https://user-images.githubusercontent.com/70282972/164002147-9c46e612-3ca6-4a46-9809-4f6c6fedf0b8.png)
+# Panel admina
+![Panel admina](https://user-images.githubusercontent.com/70282972/164002140-dcfed3b3-a615-412a-96dc-514a22f9157f.png)
+# Strona pojedyńczego przepisu
+![Strona przepisu](https://user-images.githubusercontent.com/70282972/164002151-a776fd87-eba5-45c0-a8e1-c2bf3d8d7983.png)
+# Zakładka "Dodaj przepis"
+![Nowy przepis](https://user-images.githubusercontent.com/70282972/164002154-7af6806d-add7-4e7e-8eda-c7bd07b51499.png)
 
-<br /> <br /> <br />
 <br /> <br /> <br />
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
